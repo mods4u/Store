@@ -1,0 +1,174 @@
+[
+  {
+    "key": "snapchat",
+    "name": "Snapchat",
+    "developer": "Snap Inc.",
+    "verified": true,
+    "rating": 4.2,
+    "reviews": "8.5M",
+    "downloads": "500M+",
+    "category": "Social",
+    "contentRating": "12+",
+    "description": "Snapchat is the app where friends express themselves and connect with each other—instantly and authentically.\n\n• CAMERA-FIRST: Express yourself with Filters, Lenses, and special effects. Snaps disappear by default, so you can share more freely.\n\n• STORIES: Create Stories to keep friends updated throughout your day. Stories disappear after 24 hours, so they're more casual and pressure-free.\n\n• DISCOVER: Find news, entertainment, and original shows from creators and publishers you love.\n\nSnapchat's innovative camera-first technology enables you to express yourself naturally. Share your life through photos and videos with a degree of privacy built into the design.\n\nKey features include real-time video and audio calling, group chats with up to 32 people, and the ability to create custom stickers from your photos. The app uses end-to-end encryption for one-on-one messages.",
+    "accentColor": "#FFFC00",
+    "featured": true,
+    "editorChoice": true,
+    "screenshots": [
+      "https://via.placeholder.com/200x400/FFFC00/000?text=Snapchat+1",
+      "https://via.placeholder.com/200x400/FFFC00/000?text=Snapchat+2",
+      "https://via.placeholder.com/200x400/FFFC00/000?text=Snapchat+3",
+      "https://via.placeholder.com/200x400/FFFC00/000?text=Snapchat+4"
+    ],
+    "updated": "2026-08-20",
+    "released": "2011-09-15",
+    "fakeReviews": [
+      {
+        "author": "Yuki Tanaka",
+        "rating": 5,
+        "text": "Love the new update! The camera filters are so creative and the stories feature makes sharing so much fun. Best social app out there.",
+        "helpful": 24500
+      },
+      {
+        "author": "Amara Okonkwo",
+        "rating": 1,
+        "text": "The app drains my battery so fast now. I used to get through a day fine, but after the latest update my phone dies by noon. Also keeps crashing when I try to use Snapchat+ features.",
+        "helpful": 18200
+      },
+      {
+        "author": "Carlos Mendez",
+        "rating": 4,
+        "text": "Really good app but the AI features feel a bit invasive. The friend suggestions are weirdly accurate. Performance is solid though, no lag.",
+        "helpful": 3100
+      }
+    ]
+  },
+  {
+    "key": "whatsapp",
+    "name": "WhatsApp",
+    "developer": "Meta Platforms, Inc.",
+    "verified": true,
+    "rating": 4.4,
+    "reviews": "12.2M",
+    "downloads": "1B+",
+    "category": "Communication",
+    "contentRating": "Everyone",
+    "description": "WhatsApp is a FREE messaging app available for Android and other platforms. WhatsApp uses your phone's Internet connection (4G, 3G, 2G, EDGE or Wi-Fi, as available) to let you message and call friends and family. Switch from SMS to WhatsApp to send and receive messages, make calls, share media, and more—all with just a WiFi connection.\n\n• SIMPLE AND RELIABLE: Send messages and make calls to your contacts using only a data connection. No additional charges applied.\n\n• WORKS ANYWHERE: Send and receive messages and media to friends and family using WhatsApp. With file sharing capabilities, you can exchange documents, photos, videos, and music.\n\n• SECURE AND PRIVATE: WhatsApp uses end-to-end encryption, which ensures that your messages stay private between you and the recipient. Your chats, calls, status updates and files shared on WhatsApp are encrypted by default.\n\n• STAY CONNECTED: With group chat features, you can create groups and chat with multiple people at the same time. Share your location with your contacts, and more.\n\nWhatsApp is free and offers crystal clear voice calls, video calling, and unlimited messaging capabilities worldwide.",
+    "accentColor": "#25D366",
+    "featured": true,
+    "editorChoice": false,
+    "screenshots": [
+      "https://via.placeholder.com/200x400/25D366/fff?text=WhatsApp+1",
+      "https://via.placeholder.com/200x400/25D366/fff?text=WhatsApp+2",
+      "https://via.placeholder.com/200x400/25D366/fff?text=WhatsApp+3",
+      "https://via.placeholder.com/200x400/25D366/fff?text=WhatsApp+4"
+    ],
+    "updated": "2026-08-22",
+    "released": "2009-01-01",
+    "fakeReviews": [
+      {
+        "author": "Priya Sharma",
+        "rating": 5,
+        "text": "Essential app for staying in touch with family abroad. Video calls work great even on slower connections. The communities feature is really useful for group coordination.",
+        "helpful": 31400
+      },
+      {
+        "author": "Olaf Bergström",
+        "rating": 2,
+        "text": "The recent UI overhaul is confusing. Channels keep appearing on my account and I didn't ask for them. Also takes up a lot of storage now, and backups are getting complicated.",
+        "helpful": 12800
+      },
+      {
+        "author": "Zainab Hassan",
+        "rating": 5,
+        "text": "Reliable and simple. Unlike Telegram, I actually trust WhatsApp with my data. Works perfectly for work and personal use.",
+        "helpful": 2200
+      }
+    ]
+  },
+  {
+    "key": "telegram",
+    "name": "Telegram",
+    "developer": "Telegram FZ-LLC",
+    "verified": true,
+    "rating": 4.3,
+    "reviews": "9.8M",
+    "downloads": "500M+",
+    "category": "Communication",
+    "contentRating": "Everyone",
+    "description": "Telegram is a messaging app focused on speed and security. It's super fast, simple, and free. Compare Telegram with any other messenger and see why it's the fastest messaging app on the market.\n\n• FAST: Telegram is the fastest messaging app on the market, connecting people via a unique, distributed network of data centers around the globe.\n\n• SECURE: We made encryption optional rather than mandatory. This way, the choice of whether or not to encrypt the data remains in your hands. On top of this, Telegram's API is open.\n\n• POWERFUL: You can send media files up to 2 GB in size and access your entire chat history from multiple devices.\n\n• CLOUD-BASED: Telegram is cloud-based and heavily encrypted. You can access your messages from multiple devices.\n\n• SIMPLE: There is no need to go through lengthy processes to use Telegram. All you have to do is enter your phone number and you'll be able to access Telegram instantly.\n\nTelegram supports channels, groups, and communities. Share videos, files, voice messages, and more. Telegram has a strong focus on speed and security.",
+    "accentColor": "#0088cc",
+    "featured": true,
+    "editorChoice": false,
+    "screenshots": [
+      "https://via.placeholder.com/200x400/0088cc/fff?text=Telegram+1",
+      "https://via.placeholder.com/200x400/0088cc/fff?text=Telegram+2",
+      "https://via.placeholder.com/200x400/0088cc/fff?text=Telegram+3",
+      "https://via.placeholder.com/200x400/0088cc/fff?text=Telegram+4"
+    ],
+    "updated": "2026-08-19",
+    "released": "2013-08-14",
+    "fakeReviews": [
+      {
+        "author": "Marcus Johnson",
+        "rating": 4,
+        "text": "Fast and reliable. Love the channels feature for following news and communities. My only issue is the lack of traditional end-to-end encryption by default on regular chats.",
+        "helpful": 19700
+      },
+      {
+        "author": "Svetlana Petrov",
+        "rating": 1,
+        "text": "The algorithm for suggested accounts is showing me really strange people. Also the privacy policy changes every few months and it's hard to keep track of what they're doing with data. Switched back to Signal.",
+        "helpful": 8900
+      },
+      {
+        "author": "Diego Fuentes",
+        "rating": 5,
+        "text": "Great for organizing groups and sharing large files. The bot support is unmatched. Best messenger for productivity and community building.",
+        "helpful": 5600
+      }
+    ]
+  },
+  {
+    "key": "instagram",
+    "name": "Instagram",
+    "developer": "Meta Platforms, Inc.",
+    "verified": true,
+    "rating": 4.1,
+    "reviews": "10.3M",
+    "downloads": "1B+",
+    "category": "Social",
+    "contentRating": "13+",
+    "description": "Bring your creativity to life with Instagram. Connect with friends, share what you're up to, or see what's happening in the world. Watch, shop, and connect with your community.\n\n• SHARE EVERY MOMENT: Post photos and videos to your story or feed. Share what you're up to, whether it's a moment from your day or a special event.\n\n• EXPRESS YOURSELF: Use filters, effects, and creative tools to add your own flair to every post. From reels to photos to stories, there are endless ways to share.\n\n• CONNECT WITH FRIENDS: Message your close friends and watch stories from people you follow. Stay in touch with the people you care about.\n\n• EXPLORE & DISCOVER: Find accounts to follow and discover new interests. Watch reels from around the world and keep up with trending content.\n\n• SHOP: Browse products from businesses and creators you follow. Tap on a product to find out more and make purchases directly in the app.\n\nInstagram is about self-expression and connecting with people you care about. Whether you're a content creator, entrepreneur, or just want to stay updated, Instagram has something for everyone.",
+    "accentColor": "#E4405F",
+    "featured": false,
+    "editorChoice": false,
+    "screenshots": [
+      "https://via.placeholder.com/200x400/E4405F/fff?text=Instagram+1",
+      "https://via.placeholder.com/200x400/E4405F/fff?text=Instagram+2",
+      "https://via.placeholder.com/200x400/E4405F/fff?text=Instagram+3",
+      "https://via.placeholder.com/200x400/E4405F/fff?text=Instagram+4"
+    ],
+    "updated": "2026-08-21",
+    "released": "2010-10-06",
+    "fakeReviews": [
+      {
+        "author": "Jessica Chen",
+        "rating": 3,
+        "text": "The app keeps showing me ads for things I just searched for on Google. The feed algorithm changed and now I barely see my friends' posts. Performance is sluggish on my phone.",
+        "helpful": 27300
+      },
+      {
+        "author": "Kwame Asante",
+        "rating": 5,
+        "text": "Amazing for staying connected and discovering new creators. The reels feature is addictive and I love the shopping integration. Easy to use.",
+        "helpful": 15600
+      },
+      {
+        "author": "Lucia Martinez",
+        "rating": 2,
+        "text": "Too many ads between every story and the app feels bloated now. They keep adding features nobody asked for like Instagram Notes. Just let me see photos from my friends.",
+        "helpful": 9400
+      }
+    ]
+  }
+]
