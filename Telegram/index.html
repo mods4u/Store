@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Page - Google Play Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/material.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/app-page.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <button class="app-back-button">←</button>
+        <div class="app-icon-large">
+            <!-- App icon will be set by JS -->
+        </div>
+        <div class="app-info-flex">
+            <h1 class="app-name-large">App Name</h1>
+            <div class="developer-row">
+                <span>Developer</span>
+                <!-- Verified badge will be set by JS -->
+            </div>
+            <p class="contains-ads">Contains ads</p>
+        </div>
+        <button class="install-button ripple">
+            INSTALL
+            <div class="ripple"></div>
+        </div>
+    </header>
+
+    <!-- Stats Row -->
+    <div class="stats-row">
+        <div class="stat-column">
+            <div class="stat-rating" aria-label="Rating">
+                <!-- Stars will be set by JS -->
+            </div>
+            <div class="stat-value">4.2</div>
+            <div class="stat-label">8.5M</div>
+        </div>
+    </div>
+
+    <!-- Screenshot Carousel -->
+    <section class="screenshots-section">
+        <h2 class="section-title">Screenshots</h2>
+        <div class="screenshot-carousel">
+            <!-- Screenshot cards will be set by JS -->
+        </div>
+    </section>
+
+    <!-- Description Section -->
+    <section class="description-section">
+        <header class="about-header">
+            <h2 class="section-title">About this app</h2>
+            <button class="about-toggle">Show more</button>
+        </header>
+        <p class="about-text">
+            <!-- Description will be set by JS -->
+        </p>
+    </section>
+
+    <!-- Ratings & Reviews -->
+    <section class="reviews-section">
+        <header class="reviews-header">
+            <div class="reviews-score">
+                <div class="reviews-score-value">4.2</div>
+                <div class="reviews-score-stars" aria-label="Rating">
+                    <!-- Stars will be set by JS -->
+                </div>
+                <div class="reviews-count">8.5M reviews</div>
+            </div>
+        </header>
+        <div class="rating-breakdown">
+            <!-- Rating breakdown bars will be set by JS -->
+            <div class="breakdown-row">
+                <div class="breakdown-label">5★</div>
+                <div class="breakdown-bar"><div class="breakdown-fill"></div></div>
+                <div class="breakdown-count">0</div>
+            </div>
+            <div class="breakdown-row">
+                <div class="breakdown-label">4★</div>
+                <div class="breakdown-bar"><div class="breakdown-fill"></div></div>
+                <div class="breakdown-count">0</div>
+            </div>
+            <div class="breakdown-row">
+                <div class="breakdown-label">3★</div>
+                <div class="breakdown-bar"><div class="breakdown-fill"></div></div>
+                <div class="breakdown-count">0</div>
+            </div>
+            <div class="breakdown-row">
+                <div class="breakdown-label">2★</div>
+                <div class="breakdown-bar"><div class="breakdown-fill"></div></div>
+                <div class="breakdown-count">0</div>
+            </div>
+            <div class="breakdown-row">
+                <div class="breakdown-label">1★</div>
+                <div class="breakdown-bar"><div class="breakdown-fill"></div></div>
+                <div class="breakdown-count">0</div>
+            </div>
+        </div>
+        <div class="review-cards-container">
+            <!-- Review cards will be set by JS -->
+        </div>
+    </section>
+
+    <!-- Additional Info -->
+    <section class="additional-info">
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Updated on</div>
+                <div class="info-value">August 20, 2026</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Released on</div>
+                <div class="info-value">September 15, 2011</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Category</div>
+                <div class="info-value">Social</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Developer</div>
+                <div class="info-value">Snap Inc.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sticky Mobile Install Bar -->
+    <div class="mobile-install-bar">
+        <div class="app-icon-small">
+            <!-- App icon will be set by JS -->
+        </div>
+        <div class="app-info-small">
+            <div class="app-name-small">App Name</div>
+            <div class="developer-small">Developer</div>
+        </div>
+        <button class="install-button-small ripple">
+            INSTALL
+            <div class="ripple"></div>
+        </button>
+    </div>
+
+    <script src="../js/utils.js" type="module"></script>
+    <script src="../js/app.js" type="module"></script>
+</body>
+</html>
