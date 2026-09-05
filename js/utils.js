@@ -1,11 +1,19 @@
 // utils.js - shared utility functions
 export function getBaseUrl() {
     const path = window.location.pathname;
-    const parts = path.split('/');
-    // If we're on github.io, the repo name is parts[1]
-    if (parts.length > 2 && parts[1] !== '' && parts[2] !== '') {
-        return `/${parts[1]}/`;
+    const hostname = window.location.hostname;
+    const parts = path.split('/').filter(p => p !== '');
+
+    // If we're on github.io, detect repo name from pathname
+    if (hostname.includes('github.io')) {
+        // pathname could be /, /repo/, or /repo/apps.json
+        if (parts.length >= 1 && parts[0] !== '') {
+            // We're on a repo subpath: use /repo/ as base
+            return `/${parts[0]}/`;
+        }
     }
+
+    // Fallback to root
     return '/';
 }
 
