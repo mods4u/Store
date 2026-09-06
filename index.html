@@ -1,22 +1,892 @@
 <!DOCTYPE html>
+<!-- ================================================================
+     mods4u.github.io — Premium Android Mods
+     Modern Play Store Clone (2026) — Material Design 3
+     
+     Quick Edit Guide:
+     - Download links → Search "DOWNLOAD_LINKS" in the <script> section
+     - App data      → Search "APP DATA" to edit app names, icons, descriptions
+     - Theme colors  → Search ":root" and "[data-theme=\"dark\"]" in <style>
+     - Add new app   → Copy any app object in the array, change id & details
+     ================================================================ -->
 <html lang="en" data-theme="light">
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="mods4u — Premium modded apps for Android. Download enhanced apps with extra features.">
+    <meta name="keywords" content="mods4u, modded apps, android mods, premium apps">
+    <meta name="author" content="mods4u">
+    <meta property="og:title" content="mods4u — Premium Android Mods">
+    <meta property="og:description" content="Download enhanced Android apps with premium features unlocked.">
+    <meta property="og:type" content="website">
     <title>mods4u — Premium Android Mods</title>
+    <!-- Favicon (inline SVG — lightning bolt) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- ===================== STYLES ===================== -->
+    <style>
+        /* --- Material Design 3 Color Tokens (Light) --- */
+        :root {
+            --md-primary: #01875f;
+            --md-primary-hover: #01714e;
+            --md-primary-container: #d4f5e6;
+            --md-on-primary: #ffffff;
+            --md-on-primary-container: #002114;
+            --md-secondary: #4f6354;
+            --md-tertiary: #3b6470;
+            --md-surface: #fbfdf8;
+            --md-surface-dim: #dce0d8;
+            --md-surface-container: #f0f4ec;
+            --md-surface-container-low: #f4f8f0;
+            --md-surface-container-high: #eaeee6;
+            --md-surface-container-highest: #e4e9e0;
+            --md-on-surface: #191d17;
+            --md-on-surface-variant: #424940;
+            --md-outline: #727970;
+            --md-outline-variant: #c2c9bd;
+            --md-inverse-surface: #2e322c;
+            --md-inverse-on-surface: #f0f4ec;
+            --md-error: #ba1a1a;
+            --md-star: #f9a825;
+            --md-shadow: rgba(0,0,0,0.15);
+            --md-radius-xs: 8px;
+            --md-radius-sm: 12px;
+            --md-radius-md: 16px;
+            --md-radius-lg: 28px;
+            --md-radius-xl: 32px;
+            --md-elevation-1: 0 1px 3px 1px rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.08);
+            --md-elevation-2: 0 2px 6px 2px rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.08);
+            --md-elevation-3: 0 4px 8px 3px rgba(0,0,0,0.1), 0 1px 3px 0 rgba(0,0,0,0.08);
+            --md-transition: 0.2s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        /* --- Material Design 3 Color Tokens (Dark) --- */
+        [data-theme="dark"] {
+            --md-primary: #79d9a4;
+            --md-primary-hover: #5fbf8a;
+            --md-primary-container: #005234;
+            --md-on-primary: #003822;
+            --md-on-primary-container: #95f2be;
+            --md-secondary: #b7ccba;
+            --md-tertiary: #a0ced9;
+            --md-surface: #111410;
+            --md-surface-dim: #111410;
+            --md-surface-container: #1d201b;
+            --md-surface-container-low: #191c17;
+            --md-surface-container-high: #272a25;
+            --md-surface-container-highest: #323630;
+            --md-on-surface: #e2e3dd;
+            --md-on-surface-variant: #c2c9bd;
+            --md-outline: #8c9388;
+            --md-outline-variant: #424940;
+            --md-inverse-surface: #e2e3dd;
+            --md-inverse-on-surface: #2e322c;
+            --md-error: #ffb4ab;
+            --md-star: #f9a825;
+            --md-shadow: rgba(0,0,0,0.3);
+        }
+
+        /* --- Reset & Base Styles --- */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Roboto', 'Inter', sans-serif;
+            background: var(--md-surface);
+            color: var(--md-on-surface);
+            line-height: 1.5;
+            transition: background var(--md-transition), color var(--md-transition);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--md-outline-variant); border-radius: 3px; }
+
+        /* --- Keyframe Definitions --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        /* --- Scroll Animation Classes --- */
+        .anim-target {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .anim-target.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- Header (sticky with blur backdrop) --- */
+        header {
+            background: var(--md-surface);
+            border-bottom: 1px solid var(--md-outline-variant);
+            transition: background var(--md-transition);
+        }
+
+        .header-row {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            gap: 16px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- Logo --- */
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .header-logo svg { width: 32px; height: 32px; }
+
+        .header-logo-text {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--md-on-surface);
+            white-space: nowrap;
+        }
+
+        /* --- Search Bar (pill-shaped, focus state) --- */
+        .search-container {
+            flex: 1;
+            max-width: 720px;
+            position: relative;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 48px;
+            background: var(--md-surface-container-high);
+            border-radius: var(--md-radius-lg);
+            padding: 0 16px;
+            transition: background var(--md-transition), box-shadow var(--md-transition);
+            border: 1px solid transparent;
+        }
+
+        .search-bar:focus-within {
+            background: var(--md-surface);
+            border-color: var(--md-outline);
+            box-shadow: var(--md-elevation-2);
+        }
+
+        .search-bar svg { color: var(--md-on-surface-variant); flex-shrink: 0; }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 16px;
+            color: var(--md-on-surface);
+            padding: 0 12px;
+            font-family: inherit;
+        }
+
+        .search-bar input::placeholder { color: var(--md-on-surface-variant); }
+
+        .search-bar .search-icon { margin-right: 4px; }
+
+        /* Header Right */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .header-icon-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--md-on-surface-variant);
+            transition: background var(--md-transition);
+            position: relative;
+        }
+
+        .header-icon-btn:hover { background: var(--md-surface-container-high); }
+
+        .header-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6C5CE7, #A29BFE);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            margin-left: 8px;
+        }
+
+        /* --- Category Tabs (For you, Top charts, etc.) --- */
+        .tabs-container {
+            border-bottom: 1px solid var(--md-outline-variant);
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .tabs-container::-webkit-scrollbar { display: none; }
+
+        .tabs-inner {
+            display: flex;
+            gap: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .tab {
+            padding: 14px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--md-on-surface-variant);
+            white-space: nowrap;
+            position: relative;
+            transition: color var(--md-transition);
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .tab:hover { color: var(--md-on-surface); }
+
+        .tab.active {
+            color: var(--md-primary);
+            border-bottom-color: var(--md-primary);
+        }
+
+        /* --- Main Content Wrapper --- */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 16px 100px;
+        }
+
+        /* --- Generic Section (title + scrollable row) --- */
+        .ps-section {
+            margin-top: 24px;
+        }
+
+        .ps-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-right: 4px;
+        }
+
+        .ps-section-title {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--md-on-surface);
+        }
+
+        .ps-section-more {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--md-primary);
+            padding: 8px 12px;
+            border-radius: var(--md-radius-xl);
+            transition: background var(--md-transition);
+        }
+
+        .ps-section-more:hover { background: var(--md-primary-container); }
+
+        /* --- Horizontal Scroll Row (hidden scrollbar) --- */
+        .hscroll-row {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+        }
+
+        .hscroll-row::-webkit-scrollbar { display: none; }
+
+        /* --- Small App Card (scroll row item) --- */
+        .app-card-sm {
+            flex-shrink: 0;
+            width: 160px;
+            scroll-snap-align: start;
+            cursor: pointer;
+            transition: transform var(--md-transition);
+        }
+
+        .app-card-sm:hover { transform: translateY(-2px); }
+
+        .app-card-sm .card-icon {
+            width: 160px;
+            height: 160px;
+            border-radius: var(--md-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            overflow: hidden;
+            box-shadow: var(--md-elevation-1);
+            transition: box-shadow var(--md-transition);
+        }
+
+        .app-card-sm:hover .card-icon { box-shadow: var(--md-elevation-2); }
+
+        .app-card-sm .card-icon svg { width: 56px; height: 56px; }
+
+        .app-card-sm .card-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--md-on-surface);
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .app-card-sm .card-meta {
+            font-size: 12px;
+            color: var(--md-on-surface-variant);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .card-meta .star { color: var(--md-star); }
+
+        /* --- Banner Card (larger promo card) --- */
+        .banner-card {
+            flex-shrink: 0;
+            width: 340px;
+            border-radius: var(--md-radius-md);
+            overflow: hidden;
+            background: var(--md-surface-container);
+            box-shadow: var(--md-elevation-1);
+            transition: box-shadow var(--md-transition), transform var(--md-transition);
+            cursor: pointer;
+        }
+
+        .banner-card:hover { box-shadow: var(--md-elevation-3); transform: translateY(-2px); }
+
+        .banner-image {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-image svg { width: 72px; height: 72px; }
+
+        .banner-body {
+            padding: 16px;
+        }
+
+        .banner-body .card-name {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .banner-body .card-meta {
+            font-size: 13px;
+            color: var(--md-on-surface-variant);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* --- App Detail Page (SPA overlay, hidden by default) --- */
+        .app-detail-page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .app-detail-page.active { display: block; }
+
+        .storefront.hidden { display: none; }
+
+        .detail-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 0;
+            margin-bottom: 16px;
+            color: var(--md-primary);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: var(--md-radius-xl);
+            transition: background var(--md-transition);
+            cursor: pointer;
+        }
+
+        .detail-back:hover { background: var(--md-primary-container); }
+
+        .detail-hero {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .detail-icon {
+            width: 180px;
+            height: 180px;
+            border-radius: var(--md-radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--md-elevation-2);
+            flex-shrink: 0;
+        }
+
+        .detail-icon svg { width: 80px; height: 80px; }
+
+        .detail-info { min-width: 0; }
+
+        .detail-app-name {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .detail-dev {
+            font-size: 14px;
+            color: var(--md-primary);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .detail-stats {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--md-on-surface-variant);
+            margin-bottom: 6px;
+        }
+
+        .detail-stats .star { color: var(--md-star); font-weight: 600; }
+
+        .detail-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+        }
+
+        .detail-tag {
+            font-size: 12px;
+            padding: 6px 14px;
+            border: 1px solid var(--md-outline-variant);
+            border-radius: var(--md-radius-xl);
+            color: var(--md-on-surface-variant);
+            transition: all var(--md-transition);
+        }
+
+        .detail-tag:hover { background: var(--md-surface-container-high); }
+
+        .detail-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        /* Install Button */
+        .install-btn {
+            height: 48px;
+            padding: 0 32px;
+            background: var(--md-primary);
+            color: var(--md-on-primary);
+            border-radius: var(--md-radius-xl);
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
+            letter-spacing: 0.1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background var(--md-transition), box-shadow var(--md-transition), transform var(--md-transition);
+            box-shadow: var(--md-elevation-1);
+        }
+
+        .install-btn:hover {
+            background: var(--md-primary-hover);
+            box-shadow: var(--md-elevation-2);
+            transform: translateY(-1px);
+        }
+
+        /* Detail Content Grid */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+        }
+
+        .detail-section {
+            margin-bottom: 32px;
+        }
+
+        .detail-section-title {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .detail-section p {
+            font-size: 14px;
+            color: var(--md-on-surface-variant);
+            line-height: 1.75;
+        }
+
+        /* Screenshots Carousel */
+        .screenshots-row {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+        }
+
+        .screenshots-row::-webkit-scrollbar { display: none; }
+
+        .screenshot {
+            flex-shrink: 0;
+            width: 200px;
+            height: 360px;
+            border-radius: var(--md-radius-sm);
+            overflow: hidden;
+            box-shadow: var(--md-elevation-1);
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--md-on-surface-variant);
+            font-size: 12px;
+            text-align: center;
+            padding: 16px;
+        }
+
+        /* Info Table */
+        .info-table { width: 100%; border-collapse: collapse; }
+
+        .info-table tr { border-bottom: 1px solid var(--md-outline-variant); }
+        .info-table tr:last-child { border-bottom: none; }
+
+        .info-table td {
+            padding: 14px 0;
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        .info-table td:first-child {
+            color: var(--md-on-surface-variant);
+            width: 140px;
+            padding-right: 24px;
+        }
+
+        .info-table td:last-child { color: var(--md-on-surface); }
+
+        /* Rating Bar */
+        .rating-overview {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .rating-big {
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .rating-stars-big { color: var(--md-star); font-size: 18px; letter-spacing: 1px; }
+
+        .rating-count { font-size: 12px; color: var(--md-on-surface-variant); margin-top: 4px; }
+
+        .rating-bars { flex: 1; }
+
+        .rating-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .rating-bar-label { font-size: 12px; color: var(--md-on-surface-variant); width: 12px; text-align: right; }
+
+        .rating-bar-track {
+            flex: 1;
+            height: 6px;
+            background: var(--md-surface-container-highest);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .rating-bar-fill {
+            height: 100%;
+            background: var(--md-primary);
+            border-radius: 3px;
+            transition: width 0.6s ease;
+        }
+
+        /* Review Card */
+        .review-card {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--md-outline-variant);
+        }
+
+        .review-card:last-child { border-bottom: none; }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .review-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--md-surface-container-highest);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--md-on-surface-variant);
+        }
+
+        .review-author { font-size: 14px; font-weight: 500; }
+
+        .review-date { font-size: 12px; color: var(--md-on-surface-variant); }
+
+        .review-stars { color: var(--md-star); font-size: 12px; margin-bottom: 6px; }
+
+        .review-text { font-size: 14px; color: var(--md-on-surface-variant); line-height: 1.6; }
+
+        /* Security Badge */
+        .security-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            background: var(--md-surface-container);
+            border-radius: var(--md-radius-md);
+            margin-top: 20px;
+        }
+
+        .security-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--md-primary-container);
+            color: var(--md-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .security-text { font-size: 13px; color: var(--md-on-surface-variant); line-height: 1.6; }
+        .security-text strong { color: var(--md-on-surface); }
+
+        /* --- Bottom Navigation (mobile only) --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: var(--md-surface);
+            border-top: 1px solid var(--md-outline-variant);
+            display: none;
+            padding: 4px 0 8px;
+            transition: background var(--md-transition);
+        }
+
+        .bottom-nav-inner {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 12px;
+            border-radius: var(--md-radius-sm);
+            color: var(--md-on-surface-variant);
+            font-size: 12px;
+            font-weight: 500;
+            transition: color var(--md-transition);
+            cursor: pointer;
+        }
+
+        .nav-item.active { color: var(--md-primary); }
+        .nav-item:hover { color: var(--md-on-surface); }
+
+        .nav-item svg { width: 24px; height: 24px; }
+
+        /* --- Site Footer --- */
+        .ps-footer {
+            border-top: 1px solid var(--md-outline-variant);
+            padding: 32px 16px;
+            text-align: center;
+            color: var(--md-on-surface-variant);
+            font-size: 12px;
+            margin-top: 48px;
+        }
+
+        .ps-footer a {
+            color: var(--md-primary);
+            transition: opacity var(--md-transition);
+        }
+
+        .ps-footer a:hover { opacity: 0.7; }
+
+        .ps-footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .ps-footer-brand {
+            font-family: 'Google Sans', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 12px;
+            color: var(--md-on-surface);
+        }
+
+        .ps-footer-brand span { color: var(--md-primary); }
+
+        /* --- Filter Chips (All, Tools, Social, etc.) --- */
+        .category-chips {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            margin-bottom: 20px;
+            padding: 4px 0;
+        }
+
+        .category-chips::-webkit-scrollbar { display: none; }
+
+        .chip {
+            flex-shrink: 0;
+            padding: 8px 16px;
+            border-radius: var(--md-radius-sm);
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid var(--md-outline-variant);
+            color: var(--md-on-surface-variant);
+            background: transparent;
+            transition: all var(--md-transition);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .chip:hover { background: var(--md-surface-container-high); color: var(--md-on-surface); }
+
+        .chip.active {
+            background: var(--md-secondary-container, var(--md-surface-container-high));
+            color: var(--md-on-surface);
+            border-color: transparent;
+        }
+
+        /* --- Responsive: Tablet (≤900px) --- */
+        @media (max-width: 900px) {
+            .detail-grid { grid-template-columns: 1fr; }
+            .detail-hero { grid-template-columns: 1fr; text-align: center; }
+            .detail-icon { margin: 0 auto; }
+            .detail-tags { justify-content: center; }
+            .detail-actions { justify-content: center; }
+            .banner-card { width: 280px; }
+        }
+
+        @media (max-width: 640px) {
+            .header-logo-text { display: none; }
+            .bottom-nav { display: block; }
+            main { padding-bottom: 80px; }
+            .detail-app-name { font-size: 22px; }
+            .detail-icon { width: 140px; height: 140px; }
+            .detail-icon svg { width: 60px; height: 60px; }
+            .app-card-sm { width: 120px; }
+            .app-card-sm .card-icon { width: 120px; height: 120px; }
+            .banner-card { width: 260px; }
+            .screenshot { width: 160px; height: 285px; }
+            .search-container { max-width: none; }
+            .rating-overview { flex-direction: column; text-align: center; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ==================== HEADER ==================== -->
 <header>
     <div class="header-row">
-        <a href="#" class="header-logo" onclick="showStorefront(); return false;">
+        <a href="#" class="header-logo" onclick="window.scrollTo(0,0); return false;">
             <svg viewBox="0 0 48 48" fill="none">
                 <path d="M6 8C6 6.89543 6.89543 6 8 6H18L24 14H40C41.1046 14 42 14.8954 42 16V38C42 39.1046 41.1046 40 40 40H8C6.89543 40 6 39.1046 6 38V8Z" fill="#01875f"/>
                 <path d="M6 20H42V38C42 39.1046 41.1046 40 40 40H8C6.89543 40 6 39.1046 6 38V20Z" fill="#01714e"/>
@@ -24,13 +894,21 @@
             </svg>
             <span class="header-logo-text">mods<span style="color:var(--md-primary)">4u</span></span>
         </a>
+
         <div class="search-container">
             <div class="search-bar">
                 <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" id="searchInput" placeholder="Search apps & games" aria-label="Search apps">
+                <input type="text" placeholder="Search apps & games" aria-label="Search apps">
+                <button class="header-icon-btn" style="width:36px;height:36px;" aria-label="Voice search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+                </button>
             </div>
         </div>
+
         <div class="header-right">
+            <button class="header-icon-btn" aria-label="Notifications">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </button>
             <button class="header-icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">
                 <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                 <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -38,6 +916,8 @@
             <div class="header-avatar" title="Profile">M</div>
         </div>
     </div>
+
+    <!-- Tabs -->
     <div class="tabs-container">
         <div class="tabs-inner">
             <button class="tab active" onclick="switchTab(this)">For you</button>
@@ -49,122 +929,338 @@
     </div>
 </header>
 
-<!-- STOREFRONT -->
+<!-- ==================== STOREFRONT (main page) ==================== -->
 <main class="storefront" id="storefront">
+
+    <!-- Category Chips -->
     <div style="padding-top:16px;">
-        <div class="category-chips" id="categoryChips">
-            <button class="chip active" data-cat="All">All</button>
-            <button class="chip" data-cat="Tools">Tools</button>
-            <button class="chip" data-cat="Social">Social</button>
-            <button class="chip" data-cat="Entertainment">Entertainment</button>
-            <button class="chip" data-cat="Productivity">Productivity</button>
-            <button class="chip" data-cat="Music">Music</button>
-            <button class="chip" data-cat="Photography">Photography</button>
-            <button class="chip" data-cat="Personalization">Personalization</button>
+        <div class="category-chips">
+            <button class="chip active">All</button>
+            <button class="chip">Tools</button>
+            <button class="chip">Social</button>
+            <button class="chip">Entertainment</button>
+            <button class="chip">Productivity</button>
+            <button class="chip">Music</button>
+            <button class="chip">Photography</button>
+            <button class="chip">Games</button>
         </div>
     </div>
-    <section class="ps-section anim-target"><div class="ps-section-header"><h2 class="ps-section-title">Suggested for you</h2></div><div class="hscroll-row" id="banner-row"></div></section>
-    <section class="ps-section anim-target"><div class="ps-section-header"><h2 class="ps-section-title">Essential apps</h2></div><div class="hscroll-row" id="essential-row"></div></section>
-    <section class="ps-section anim-target"><div class="ps-section-header"><h2 class="ps-section-title">Premium tools</h2></div><div class="hscroll-row" id="tools-row"></div></section>
-    <section class="ps-section anim-target"><div class="ps-section-header"><h2 class="ps-section-title">Social &amp; communication</h2></div><div class="hscroll-row" id="social-row"></div></section>
-    <section class="ps-section anim-target"><div class="ps-section-header"><h2 class="ps-section-title">Popular games</h2></div><div class="hscroll-row" id="games-row"></div></section>
+
+    <!-- Sponsored / Banner -->
+    <section class="ps-section anim-target">
+        <div class="ps-section-header">
+            <h2 class="ps-section-title">Suggested for you</h2>
+            <button class="ps-section-more">See more</button>
+        </div>
+        <div class="hscroll-row" id="banner-row"></div>
+    </section>
+
+    <!-- Essential Apps -->
+    <section class="ps-section anim-target">
+        <div class="ps-section-header">
+            <h2 class="ps-section-title">Essential apps</h2>
+            <button class="ps-section-more">See more</button>
+        </div>
+        <div class="hscroll-row" id="essential-row"></div>
+    </section>
+
+    <!-- Premium Tools -->
+    <section class="ps-section anim-target">
+        <div class="ps-section-header">
+            <h2 class="ps-section-title">Premium tools</h2>
+            <button class="ps-section-more">See more</button>
+        </div>
+        <div class="hscroll-row" id="tools-row"></div>
+    </section>
+
+    <!-- Social & Communication -->
+    <section class="ps-section anim-target">
+        <div class="ps-section-header">
+            <h2 class="ps-section-title">Social &amp; communication</h2>
+            <button class="ps-section-more">See more</button>
+        </div>
+        <div class="hscroll-row" id="social-row"></div>
+    </section>
+
+    <!-- Games -->
+    <section class="ps-section anim-target">
+        <div class="ps-section-header">
+            <h2 class="ps-section-title">Popular games</h2>
+            <button class="ps-section-more">See more</button>
+        </div>
+        <div class="hscroll-row" id="games-row"></div>
+    </section>
+
+    <!-- Footer -->
     <footer class="ps-footer">
         <div class="ps-footer-brand">mods<span>4u</span></div>
-        <div class="ps-footer-links"><a href="#">About</a><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Contact</a></div>
+        <div class="ps-footer-links">
+            <a href="#">About</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact</a>
+        </div>
         <p>&copy; 2025 mods4u. All rights reserved.</p>
     </footer>
 </main>
 
-<!-- APP DETAIL (SPA overlay) -->
-<main class="app-detail-page" id="app-detail-page">
-    <button class="detail-back" onclick="showStorefront()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        Back
-    </button>
-    <div class="detail-hero" id="detail-hero"></div>
-    <div class="detail-grid">
-        <div>
-            <div class="detail-section"><h3 class="detail-section-title">Screenshots</h3><div class="screenshots-row" id="screenshots-row"></div></div>
-            <div class="detail-section"><h3 class="detail-section-title">About this app</h3><div id="detail-about"></div></div>
-            <div class="detail-section"><h3 class="detail-section-title">What's new</h3><div id="detail-whats-new"></div></div>
-            <div class="detail-section"><h3 class="detail-section-title">Ratings and reviews</h3><div id="detail-ratings"></div></div>
-        </div>
-        <div>
-            <div class="detail-section"><h3 class="detail-section-title">App info</h3><table class="info-table" id="detail-info-table"></table></div>
-            <div class="security-card">
-                <div class="security-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
-                <div class="security-text"><strong>Security verified</strong><br>This app has passed security checks and is safe to install.</div>
-            </div>
-        </div>
-    </div>
-</main>
 
-<!-- BOTTOM NAV (mobile) -->
+
+<!-- ==================== BOTTOM NAV (mobile) ==================== -->
 <nav class="bottom-nav">
     <div class="bottom-nav-inner">
-        <button class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="4" y1="12" x2="8" y2="12"/><circle cx="16" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="18" cy="13" r="1" fill="currentColor" stroke="none"/></svg>Games</button>
-        <button class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Apps</button>
-        <button class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>Offers</button>
-        <button class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Books</button>
+        <button class="nav-item active" aria-label="Games">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="4" y1="12" x2="8" y2="12"/><circle cx="16" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="18" cy="13" r="1" fill="currentColor" stroke="none"/></svg>
+            Games
+        </button>
+        <button class="nav-item" aria-label="Apps">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            Apps
+        </button>
+        <button class="nav-item" aria-label="Offers">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>
+            Offers
+        </button>
+        <button class="nav-item" aria-label="Books">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Books
+        </button>
     </div>
 </nav>
 
-<script type="module">
-import apps from './apps.json';
-
-// ── THEME ──
-(function() {
-    const saved = localStorage.getItem('theme');
-    if (saved) document.documentElement.setAttribute('data-theme', saved);
-    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
-})();
-window.toggleTheme = function() {
-    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-};
-const ts = document.createElement('style');
-ts.textContent = `[data-theme="dark"] .sun-icon{display:block!important}[data-theme="light"] .moon-icon{display:block!important}[data-theme="dark"] .moon-icon{display:none!important}[data-theme="light"] .sun-icon{display:none!important}`;
-document.head.appendChild(ts);
-
-// ── TAB SWITCHING ──
-window.switchTab = function(el) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
+<script>
+/* ================================================================
+   DOWNLOAD LINKS — Edit all download URLs here for easy management
+   ================================================================ */
+const DOWNLOAD_LINKS = {
+    'snapchat-pro':   'https://github.com/mods4u/Store/raw/refs/heads/main/snapPro.apk',  // Snapchat Pro APK
+    'insta-pro':      '#',                                                                                   // Instagram Pro (not available yet)
+    'wa-pro':         '#',                                                                                   // WhatsApp Pro (not available yet)
+    'spotify-pro':    '#',                                                                                   // Spotify Pro (not available yet)
+    'yt-pro':         '#',                                                                                   // YouTube Pro (not available yet)
+    'capcut-pro':     '#',                                                                                   // CapCut Pro (not available yet)
+    'nova-launcher':  'https://github.com/mods4u/Store/raw/refs/heads/main/6677.zip',         // Nova Launcher Pro (legacy bundle)
+    'tiktok-pro':     '#'                                                                                    // TikTok Pro (not available yet)
 };
 
-// ── CATEGORY FILTER ──
-document.getElementById('categoryChips').addEventListener('click', e => {
-    const chip = e.target.closest('.chip');
-    if (!chip) return;
-    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active');
-    const cat = chip.dataset.cat;
-    const filtered = cat === 'All' ? apps : apps.filter(a => a.category === cat);
-    renderSections(filtered);
-});
+// ============ APP DATA (name, icons, descriptions, reviews) =============
+const apps = [
+    {
+        id: 'snapchat-pro',
+        name: 'Snapchat Pro',
+        dev: 'System Tools Dev',
+        rating: 4.8,
+        reviews: '12.4K',
+        downloads: '1M+',
+        category: 'Tools',
+        size: 'Varies',
+        version: '2.4.0',
+        android: '8.0+',
+        updated: 'Oct 24, 2023',
+        color: '#FFFC00',
+        iconBg: 'linear-gradient(135deg, #FFFC00, #FFD000)',
+        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#FFFC00"/><path d="M24 10C17.92 10 13 14.92 13 21c0 2.8.96 5.38 2.56 7.42A9.96 9.96 0 0 0 13 34h22a9.96 9.96 0 0 0-2.56-5.58C34.04 26.38 35 23.8 35 21c0-6.08-4.92-11-11-11z" fill="#1A1A2E" opacity="0.7"/></svg>',
+        bannerBg: 'linear-gradient(135deg, #FFFC00 0%, #FFD000 50%, #FFA000 100%)',
+        shortDesc: 'Next-gen gesture controls for Android',
+        fullDesc: '<p>Experience the next generation of Android navigation. Snapchat Pro replaces standard buttons with intuitive gestures, offering a seamless, full-screen experience optimized for modern devices.</p><p style="margin-top:12px;">Built with performance and battery life at its core, the app uses advanced gesture recognition algorithms that learn your habits over time. Navigate naturally with swipe, pinch, and tap gestures that feel fluid and responsive across all screen sizes.</p><p style="margin-top:12px;">Full dark mode support helps reduce eye strain during nighttime use while preserving battery life on OLED displays. Customizable sensitivity settings let you fine-tune every gesture to match your personal preference.</p>',
+        tags: ['Tools', 'Productivity', 'Personalization', 'Gesture'],
+        changelog: ['Improved gesture recognition accuracy by 20%', 'Fixed compatibility issues with Android 14', 'New "Quick Switch" animation for faster navigation', 'Reduced memory usage by 15%', 'Bug fixes and performance improvements'],
+        ratingDist: [65, 20, 8, 4, 3],
+        downloadUrl: DOWNLOAD_LINKS['snapchat-pro'],
+        reviews_data: [
+            { author: 'Alex M.', date: 'Nov 12, 2023', stars: 5, text: 'Absolutely love this app! The gesture controls are so smooth and intuitive. Battery life has improved significantly since I started using it.' },
+            { author: 'Sarah K.', date: 'Oct 30, 2023', stars: 5, text: 'Best gesture navigation app out there. The dark mode is beautiful and the customization options are endless.' },
+            { author: 'James L.', date: 'Oct 25, 2023', stars: 4, text: 'Great app overall. Would love to see more gesture options in future updates. The recent Android 14 fix was much needed.' }
+        ]
+    },
+    {
+        id: 'insta-pro',
+        name: 'Instagram Pro',
+        dev: 'Social Mods',
+        rating: 4.7,
+        reviews: '8.2K',
+        downloads: '500K+',
+        category: 'Social',
+        size: '52 MB',
+        version: '10.5.0',
+        android: '9.0+',
+        updated: 'Dec 1, 2023',
+        color: '#DD2A7B',
+        iconBg: 'linear-gradient(135deg, #F58529, #DD2A7B, #8134AF)',
+        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="url(#ig)"/><defs><linearGradient id="ig" x1="0" y1="48" x2="48" y2="0"><stop stop-color="#F58529"/><stop offset="0.5" stop-color="#DD2A7B"/><stop offset="1" stop-color="#8134AF"/></linearGradient></defs><rect x="8" y="8" width="32" height="32" rx="8" stroke="white" stroke-width="2.5" fill="none"/><circle cx="24" cy="24" r="8" stroke="white" stroke-width="2.5" fill="none"/><circle cx="34" cy="14" r="2" fill="white"/></svg>',
+        bannerBg: 'linear-gradient(135deg, #F58529 0%, #DD2A7B 50%, #8134AF 100%)',
+        shortDesc: 'Enhanced Instagram with extra features',
+        fullDesc: '<p>Instagram Pro brings you an enhanced social media experience with features not available in the standard app. Download media, view profiles anonymously, and enjoy an ad-free browsing experience.</p><p style="margin-top:12px;">Built on the latest Instagram base, you get all the original features plus exclusive additions like HD story downloads, ghost mode for stories, and advanced privacy controls.</p>',
+        tags: ['Social', 'Photography', 'Media'],
+        changelog: ['Added story download in HD quality', 'New ghost mode for viewing stories', 'Performance improvements', 'Bug fixes'],
+        ratingDist: [60, 25, 10, 3, 2],
+        downloadUrl: DOWNLOAD_LINKS['insta-pro'],
+        reviews_data: [
+            { author: 'Priya R.', date: 'Dec 5, 2023', stars: 5, text: 'The story download feature is a game changer! Works perfectly every time.' },
+            { author: 'Mike T.', date: 'Dec 2, 2023', stars: 4, text: 'Love the ghost mode. No more awkward story views.' }
+        ]
+    },
+    {
+        id: 'wa-pro',
+        name: 'WhatsApp Pro',
+        dev: 'Chat Mods',
+        rating: 4.6,
+        reviews: '15K',
+        downloads: '2M+',
+        category: 'Social',
+        size: '65 MB',
+        version: '12.0',
+        android: '8.0+',
+        updated: 'Nov 15, 2023',
+        color: '#25D366',
+        iconBg: 'linear-gradient(135deg, #25D366, #128C7E)',
+        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#25D366"/><path d="M24 10C16.268 10 10 16.268 10 24c0 2.856.748 5.536 2.056 7.856L10 38l6.4-2C18.656 37.248 21.248 38 24 38c7.732 0 14-6.268 14-14S31.732 10 24 10z" fill="white"/></svg>',
+        bannerBg: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+        shortDesc: 'Feature-rich WhatsApp with privacy tools',
+        fullDesc: '<p>WhatsApp Pro delivers an upgraded messaging experience with advanced privacy features, customization options, and media sharing capabilities that go beyond the standard app.</p><p style="margin-top:12px;">Enjoy features like hiding online status, custom themes, scheduled messages, and enhanced file sharing with support for larger file sizes and more formats.</p>',
+        tags: ['Social', 'Messaging', 'Communication'],
+        changelog: ['New custom theme engine', 'Scheduled messages feature', 'Enhanced privacy controls', 'Bug fixes and stability improvements'],
+        ratingDist: [55, 28, 10, 4, 3],
+        downloadUrl: DOWNLOAD_LINKS['wa-pro'],
+        reviews_data: [
+            { author: 'David W.', date: 'Nov 18, 2023', stars: 5, text: 'The theme customization is incredible. My WhatsApp never looked this good.' }
+        ]
+    },
+    {
+        id: 'spotify-pro',
+        name: 'Spotify Pro',
+        dev: 'Music Mods',
+        rating: 4.9,
+        reviews: '22K',
+        downloads: '5M+',
+        category: 'Music',
+        size: '38 MB',
+        version: '8.9.4',
+        android: '8.0+',
+        updated: 'Dec 10, 2023',
+        color: '#1DB954',
+        iconBg: 'linear-gradient(135deg, #1DB954, #169C46)',
+        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#1DB954"/><circle cx="24" cy="26" r="12" stroke="white" stroke-width="2.5" fill="none"/><path d="M18 23c3-1 8-1.5 12 0" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M20 27c2-.7 5-1 8 0" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>',
+        bannerBg: 'linear-gradient(135deg, #1DB954 0%, #169C46 50%, #0d7a38 100%)',
+        shortDesc: 'Premium music with unlimited skips',
+        fullDesc: '<p>Spotify Pro unlocks the full potential of your music streaming experience. Enjoy ad-free listening, unlimited skips, extreme audio quality, and the ability to download any track for offline playback.</p><p style="margin-top:12px;">With our optimized version, you also get background play controls, no forced shuffle, and access to all premium features without a subscription.</p>',
+        tags: ['Music', 'Audio', 'Streaming', 'Entertainment'],
+        changelog: ['Extreme audio quality unlocked', 'New mini-player widget', 'Improved offline mode', 'Performance optimizations'],
+        ratingDist: [72, 18, 6, 2, 2],
+        downloadUrl: DOWNLOAD_LINKS['spotify-pro'],
+        reviews_data: [
+            { author: 'Emma S.', date: 'Dec 12, 2023', stars: 5, text: 'Finally can skip as much as I want! Audio quality is noticeably better.' },
+            { author: 'Chris P.', date: 'Dec 11, 2023', stars: 5, text: 'Best Spotify mod out there. Updates regularly and works flawlessly.' }
+        ]
+    },
+    {
+        id: 'yt-pro',
+        name: 'YouTube Pro',
+        dev: 'Video Mods',
+        rating: 4.8,
+        reviews: '45K',
+        downloads: '10M+',
+        category: 'Entertainment',
+        size: '48 MB',
+        version: '18.5',
+        android: '8.0+',
+        updated: 'Dec 15, 2023',
+        color: '#FF0000',
+        iconBg: 'linear-gradient(135deg, #FF0000, #CC0000)',
+        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#FF0000"/><path d="M20 16v16l14-8-14-8z" fill="white"/></svg>',
+        bannerBg: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)',
+        shortDesc: 'Ad-free YouTube with background play',
+        fullDesc: '<p>YouTube Pro provides the ultimate ad-free video experience. No more interruptions, no more forced ads before every video. Just pure, uninterrupted content.</p><p style="margin-top:12px;">Additional features include background playback, picture-in-picture mode, download videos for offline viewing, and SponsorBlock integration to skip sponsor segments automatically.</p>',
+        tags: ['Video', 'Entertainment', 'Streaming'],
+        changelog: ['Updated to latest YouTube base', 'New SponsorBlock integration', 'Improved PiP mode', 'Bug fixes'],
+        ratingDist: [68, 20, 7, 3, 2],
+        downloadUrl: DOWNLOAD_LINKS['yt-pro'],
+        reviews_data: [
+            { author: 'Ryan B.', date: 'Dec 16, 2023', stars: 5, text: 'No ads AND sponsor block? This is the only way to watch YouTube now.' }
+        ]
+    },
+    {
+        id: 'capcut-pro',
+        name: 'CapCut Pro',
+        dev: 'Edit Mods',
+        rating: 4.7,
+        reviews: '18K',
+        downloads: '3M+',
+        category: 'Photography',
+        size: '95 MB',
+        version: '11.2',
+        android: '9.0+',
+        updated: 'Dec 8, 2023',
+        color: '#00F5FF',
+        iconBg: 'linear-gradient(135deg, #00F5FF, #0099FF)',
+        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="url(#cc)"/><defs><linearGradient id="cc" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#00F5FF"/><stop offset="1" stop-color="#0099FF"/></linearGradient></defs><path d="M16 14l12-4v28l-12-4V14z" fill="white" opacity="0.9"/><circle cx="32" cy="24" r="6" fill="white" opacity="0.7"/></svg>',
+        bannerBg: 'linear-gradient(135deg, #00F5FF 0%, #0099FF 100%)',
+        shortDesc: 'Pro video editor with all effects unlocked',
+        fullDesc: '<p>CapCut Pro unlocks all premium features of the popular video editor. Access every effect, filter, transition, and template without watermarks or in-app purchases.</p><p style="margin-top:12px;">Perfect for content creators who need professional editing tools on mobile. Export in 4K, remove backgrounds, use AI-powered features, and access the full library of templates.</p>',
+        tags: ['Video', 'Editor', 'Photography', 'Creative'],
+        changelog: ['Unlocked all premium effects', 'New AI background removal', '4K export enabled', 'Stability improvements'],
+        ratingDist: [62, 22, 10, 4, 2],
+        downloadUrl: DOWNLOAD_LINKS['capcut-pro'],
+        reviews_data: [
+            { author: 'Lisa M.', date: 'Dec 9, 2023', stars: 5, text: 'All effects unlocked and no watermark! This is amazing for content creation.' }
+        ]
+    },
+    {
+        id: 'nova-launcher',
+        name: 'Nova Launcher Pro',
+        dev: 'Home Screen Mods',
+        rating: 4.5,
+        reviews: '6.8K',
+        downloads: '800K+',
+        category: 'Personalization',
+        size: '18 MB',
+        version: '8.0.16',
+        android: '8.0+',
+        updated: 'Nov 20, 2023',
+        color: '#2196F3',
+        iconBg: 'linear-gradient(135deg, #2196F3, #1565C0)',
+        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#2196F3"/><circle cx="24" cy="18" r="4" fill="white"/><rect x="14" y="26" width="8" height="8" rx="2" fill="white" opacity="0.9"/><rect x="26" y="26" width="8" height="8" rx="2" fill="white" opacity="0.7"/></svg>',
+        bannerBg: 'linear-gradient(135deg, #2196F3 0%, #1565C0 100%)',
+        shortDesc: 'Customizable home screen experience',
+        fullDesc: '<p>Nova Launcher Pro brings the most customizable home screen experience to your Android device. With gesture support, icon packs, and advanced grid layouts.</p>',
+        tags: ['Personalization', 'Launcher', 'Home Screen'],
+        changelog: ['Android 14 fully compatible', 'New gesture shortcuts', 'Performance boost', 'Bug fixes'],
+        ratingDist: [50, 30, 12, 5, 3],
+        downloadUrl: DOWNLOAD_LINKS['nova-launcher'],
+        reviews_data: []
+    },
+    {
+        id: 'tiktok-pro',
+        name: 'TikTok Pro',
+        dev: 'Social Mods',
+        rating: 4.6,
+        reviews: '30K',
+        downloads: '8M+',
+        category: 'Social',
+        size: '72 MB',
+        version: '32.0',
+        android: '8.0+',
+        updated: 'Dec 18, 2023',
+        color: '#010101',
+        iconBg: 'linear-gradient(135deg, #25F4EE, #FE2C55)',
+        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#010101"/><path d="M30 14v14a6 6 0 1 1-4-5.66V18a10 10 0 1 0 8 9.83V18a14 14 0 0 1-4 .56V14h0z" fill="#FE2C55"/><path d="M30 14v4.56a14 14 0 0 0 4-.56V14h-4z" fill="#25F4EE"/></svg>',
+        bannerBg: 'linear-gradient(135deg, #25F4EE 0%, #FE2C55 100%)',
+        shortDesc: 'No ads, no watermark, download videos',
+        fullDesc: '<p>TikTok Pro removes all ads, watermarks, and download restrictions. Enjoy a clean TikTok experience with the ability to save any video directly to your device.</p>',
+        tags: ['Social', 'Video', 'Entertainment'],
+        changelog: ['Removed all ads', 'No watermark on downloads', 'Region unlock feature', 'Performance improvements'],
+        ratingDist: [58, 24, 10, 5, 3],
+        downloadUrl: DOWNLOAD_LINKS['tiktok-pro'],
+        reviews_data: []
+    }
+];
 
-// ── SEARCH ──
-document.getElementById('searchInput').addEventListener('input', function() {
-    const q = this.value.trim().toLowerCase();
-    if (!q) { renderSections(apps); return; }
-    const matches = apps.filter(a => a.name.toLowerCase().includes(q) || a.developer.toLowerCase().includes(q) || a.category.toLowerCase().includes(q));
-    renderSections(matches);
-});
-
-// ── RENDER ──
-function renderSections(list) {
-    renderBanner(list.slice(0, 4));
-    renderRow('essential-row', list.slice(0, 6));
-    renderRow('tools-row', list.filter(a => a.category === 'Tools' || a.category === 'Personalization' || a.category === 'Photography'));
-    renderRow('social-row', list.filter(a => a.category === 'Social'));
-    renderRow('games-row', list.filter(a => a.category === 'Entertainment' || a.category === 'Music'));
-    bindScrollAnimations();
-}
-
-function renderBanner(list) {
-    document.getElementById('banner-row').innerHTML = list.map(app => `
-        <div class="banner-card" onclick="openAppDetail('${app.key}')">
+// ============ RENDER STOREFRONT (builds app rows from data) =============
+function renderStorefront() {
+    // Banner row (first 4)
+    const bannerRow = document.getElementById('banner-row');
+    bannerRow.innerHTML = apps.slice(0, 4).map(app => `
+        <div class="banner-card" onclick="openAppDetail('${app.id}')">
             <div class="banner-image" style="background:${app.bannerBg}">
                 ${app.iconSvg.replace('width="48" height="48"', 'width="72" height="72"')}
             </div>
@@ -175,11 +1271,21 @@ function renderBanner(list) {
             </div>
         </div>
     `).join('');
+
+    // Essential apps
+    renderAppRow('essential-row', apps.slice(0, 6));
+    // Tools
+    renderAppRow('tools-row', [apps[0], apps[6], apps[5], apps[4], apps[7]]);
+    // Social
+    renderAppRow('social-row', [apps[1], apps[2], apps[7], apps[3]]);
+    // Games (reuse some icons with different style)
+    renderAppRow('games-row', [apps[7], apps[3], apps[5], apps[4], apps[0], apps[2]]);
 }
 
-function renderRow(id, list) {
-    document.getElementById(id).innerHTML = list.map(app => `
-        <div class="app-card-sm" onclick="openAppDetail('${app.key}')">
+function renderAppRow(containerId, appList) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = appList.map(app => `
+        <div class="app-card-sm" onclick="openAppDetail('${app.id}')">
             <div class="card-icon" style="background:${app.iconBg}">
                 ${app.iconSvg.replace('width="48" height="48"', 'width="56" height="56"')}
             </div>
@@ -189,89 +1295,64 @@ function renderRow(id, list) {
     `).join('');
 }
 
-// ── APP DETAIL ──
-window.openAppDetail = function(key) {
-    const app = apps.find(a => a.key === key);
-    if (!app) return;
-    document.getElementById('storefront').classList.add('hidden');
-    document.getElementById('app-detail-page').classList.add('active');
-    window.scrollTo(0, 0);
-    document.title = `${app.name} — mods4u`;
-
-    // Hero
-    document.getElementById('detail-hero').innerHTML = `
-        <div class="detail-icon" style="background:${app.iconBg}">${app.iconSvg.replace('width="48" height="48"', 'width="80" height="80"')}</div>
-        <div class="detail-info">
-            <h1 class="detail-app-name">${app.name}</h1>
-            <div class="detail-dev">${app.developer}</div>
-            <div class="detail-stats"><span class="star">&#9733;</span><span class="star">${app.rating}</span><span style="margin-left:4px">${app.reviews} reviews</span></div>
-            <div class="detail-tags">${app.tags.map(t => `<span class="detail-tag">${t}</span>`).join('')}</div>
-            <div class="detail-actions">
-                <a href="${app.downloadUrl}" class="install-btn" target="_blank" rel="noopener">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Install
-                </a>
-            </div>
-        </div>`;
-
-    // Screenshots
-    const sc = ['#f0f4ec','#e8f0fe','#fce8e6','#e6f4ea','#f3e8fd','#fff8e1'];
-    document.getElementById('screenshots-row').innerHTML = [0,1,2,3,4].map((_, i) => `
-        <div class="screenshot"><div class="screenshot-placeholder" style="background:${sc[i%sc.length]}">
-            <div><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--md-on-surface-variant)" stroke-width="1.5" style="margin:0 auto 8px;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Screenshot ${i+1}</div>
-        </div></div>`).join('');
-
-    // About
-    document.getElementById('detail-about').innerHTML = app.fullDesc;
-
-    // What's New
-    document.getElementById('detail-whats-new').innerHTML = `
-        <div style="background:var(--md-surface-container);border-radius:var(--md-radius-sm);padding:16px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-                <span style="font-weight:700;color:var(--md-primary);font-size:13px;">Version ${app.version}</span>
-                <span style="font-size:12px;color:var(--md-on-surface-variant);">${app.updated}</span>
-            </div>
-            <ul style="list-style:none;padding:0;">
-                ${app.changelog.map(item => `<li style="font-size:13px;color:var(--md-on-surface-variant);padding:4px 0 4px 20px;position:relative;"><span style="position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--md-primary);border-radius:50%;"></span>${item}</li>`).join('')}
-            </ul>
-        </div>`;
-
-    // Ratings
-    document.getElementById('detail-ratings').innerHTML = `
-        <div class="rating-overview">
-            <div><div class="rating-big">${app.rating}</div><div class="rating-stars-big">${'&#9733;'.repeat(Math.floor(app.rating))}${app.rating%1>=0.5?'&#9734;':''}</div><div class="rating-count">${app.reviews} reviews</div></div>
-            <div class="rating-bars">${[5,4,3,2,1].map((s,i)=>`<div class="rating-bar-row"><span class="rating-bar-label">${s}</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:${app.ratingDist[i]}%"></div></div></div>`).join('')}</div>
-        </div>
-        ${app.reviews_data.length>0?app.reviews_data.map(r=>`<div class="review-card"><div class="review-header"><div class="review-avatar">${r.author.charAt(0)}</div><div><div class="review-author">${r.author}</div><div class="review-date">${r.date}</div></div></div><div class="review-stars">${'&#9733;'.repeat(r.stars)}${'&#9734;'.repeat(5-r.stars)}</div><div class="review-text">${r.text}</div></div>`).join(''):'<p style="font-size:14px;color:var(--md-on-surface-variant);">No reviews yet.</p>'}`;
-
-    // Info table
-    document.getElementById('detail-info-table').innerHTML = `
-        <tr><td>Developer</td><td>${app.developer}</td></tr>
-        <tr><td>Category</td><td>${app.category}</td></tr>
-        <tr><td>Updated</td><td>${app.updated}</td></tr>
-        <tr><td>Size</td><td>${app.size}</td></tr>
-        <tr><td>Installs</td><td>${app.downloads}</td></tr>
-        <tr><td>Version</td><td>${app.version}</td></tr>
-        <tr><td>Requires</td><td>Android ${app.android}</td></tr>`;
-};
-
-window.showStorefront = function() {
-    document.getElementById('app-detail-page').classList.remove('active');
-    document.getElementById('storefront').classList.remove('hidden');
-    document.title = 'mods4u — Premium Android Mods';
-    window.scrollTo(0, 0);
-};
-
-// ── SCROLL ANIMATIONS ──
-function bindScrollAnimations() {
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.anim-target').forEach(el => obs.observe(el));
+// ============ APP DETAIL (opens when user clicks an app) =============
+function openAppDetail(appId) {
+    window.location.href = appId + '/index.html';
 }
 
-// ── INIT ──
-renderSections(apps);
+
+
+// ============ TAB SWITCHING =============
+function switchTab(el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+}
+
+// ============ CATEGORY CHIP FILTER =============
+document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// ============ DARK MODE TOGGLE =============
+function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+}
+
+(function() {
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+})();
+
+// ============ SCROLL REVEAL ANIMATIONS =============
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.anim-target').forEach(el => observer.observe(el));
+
+// Hide/show sun/moon
+const style = document.createElement('style');
+style.textContent = `[data-theme="dark"] .sun-icon { display: block !important; } [data-theme="light"] .moon-icon { display: block !important; } [data-theme="dark"] .moon-icon { display: none !important; } [data-theme="light"] .sun-icon { display: none !important; }`;
+document.head.appendChild(style);
+
+// Init
+renderStorefront();
 </script>
+
 </body>
 </html>
