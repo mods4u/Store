@@ -1,91 +1,277 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ModPlay — Custom APK Store</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/app-page.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="mods4u — Premium modded apps for Android. Download enhanced apps with extra features.">
+    <title>mods4u — Premium Android Mods</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Top Bar -->
-  <header class="topbar" id="topbar">
-    <div class="topbar__left">
-      <button class="topbar__menu-btn" id="menuBtn" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"/></svg>
-      </button>
-      <a href="/" class="topbar__brand">
-        <svg class="topbar__logo" width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
-          <path d="M10 8l6 8-6 8h4l6-8-6-8h-4z" fill="white"/>
-        </svg>
-        <span class="topbar__title">ModPlay</span>
-      </a>
-    </div>
-    <div class="topbar__search">
-      <svg class="topbar__search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="currentColor"/></svg>
-      <input type="text" class="topbar__input" id="searchInput" placeholder="Search apps & games" autocomplete="off">
-      <button class="topbar__clear" id="searchClear" aria-label="Clear search" style="display:none">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/></svg>
-      </button>
-    </div>
-    <div class="topbar__right">
-      <button class="topbar__icon-btn" id="themeToggle" aria-label="Toggle theme">
-        <svg class="icon-sun" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z" fill="currentColor"/></svg>
-        <svg class="icon-moon" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" fill="currentColor"/></svg>
-      </button>
-      <button class="topbar__icon-btn" id="installPwaBtn" aria-label="Install app" style="display:none">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/></svg>
-      </button>
-    </div>
-  </header>
 
-  <!-- Nav Tabs -->
-  <nav class="tabs" id="navTabs">
-    <button class="tabs__item active" data-tab="for-you">For you</button>
-    <button class="tabs__item" data-tab="top-charts">Top charts</button>
-    <button class="tabs__item" data-tab="categories">Categories</button>
-    <button class="tabs__item" data-tab="security">🔒 Security</button>
-  </nav>
-
-  <!-- Main Content -->
-  <main class="main" id="main">
-    <!-- Skeleton Loader -->
-    <div class="skeleton" id="skeleton">
-      <div class="skeleton__featured shimmer"></div>
-      <div class="skeleton__row shimmer"></div>
-      <div class="skeleton__row shimmer"></div>
-      <div class="skeleton__row shimmer"></div>
+<!-- HEADER -->
+<header>
+    <div class="header-row">
+        <a href="#" class="header-logo" onclick="showStorefront(); return false;">
+            <svg viewBox="0 0 48 48" fill="none">
+                <path d="M6 8C6 6.89543 6.89543 6 8 6H18L24 14H40C41.1046 14 42 14.8954 42 16V38C42 39.1046 41.1046 40 40 40H8C6.89543 40 6 39.1046 6 38V8Z" fill="#01875f"/>
+                <path d="M6 20H42V38C42 39.1046 41.1046 40 40 40H8C6.89543 40 6 39.1046 6 38V20Z" fill="#01714e"/>
+                <path d="M18 6L24 14H6V8C6 6.89543 6.89543 6 8 6H18Z" fill="#005234"/>
+            </svg>
+            <span class="header-logo-text">mods<span style="color:var(--md-primary)">4u</span></span>
+        </a>
+        <div class="search-container">
+            <div class="search-bar">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="searchInput" placeholder="Search apps & games" aria-label="Search apps">
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="header-icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+            <div class="header-avatar" title="Profile">M</div>
+        </div>
     </div>
-    <!-- Content injected by JS -->
-    <div class="content" id="content" style="display:none"></div>
-    <!-- Search Results -->
-    <div class="search-results" id="searchResults" style="display:none"></div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-          <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
-          <path d="M10 8l6 8-6 8h4l6-8-6-8h-4z" fill="white"/>
-        </svg>
-        <span>ModPlay</span>
-      </div>
-      <div class="footer__links">
-        <a href="#">About</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Security Training</a>
-      </div>
-      <div class="footer__meta">Custom APK Distribution • Educational Use Only</div>
+    <div class="tabs-container">
+        <div class="tabs-inner">
+            <button class="tab active" onclick="switchTab(this)">For you</button>
+            <button class="tab" onclick="switchTab(this)">Top charts</button>
+            <button class="tab" onclick="switchTab(this)">Categories</button>
+            <button class="tab" onclick="switchTab(this)">Editors' choice</button>
+            <button class="tab" onclick="switchTab(this)">Kids</button>
+        </div>
     </div>
-  </footer>
+</header>
 
-  <script type="module" src="js/app.js"></script>
+<!-- STOREFRONT -->
+<main class="storefront" id="storefront">
+    <div style="padding-top:16px;">
+        <div class="category-chips" id="categoryChips">
+            <button class="chip active" data-cat="All">All</button>
+            <button class="chip" data-cat="Tools">Tools</button>
+            <button class="chip" data-cat="Social">Social</button>
+            <button class="chip" data-cat="Entertainment">Entertainment</button>
+            <button class="chip" data-cat="Productivity">Productivity</button>
+            <button class="chip" data-cat="Music">Music</button>
+            <button class="chip" data-cat="Photography">Photography</button>
+            <button class="chip" data-cat="Personalization">Personalization</button>
+        </div>
+    </div>
+    <section class="ps-section anim-target"><div class="ps-section-header"><h2 class="ps-section-title">Suggested for you</h2></div><div class="hscroll-row" id="banner-row"></div></section>
+    <section class="ps-section anim-target"><div class="ps-section-header"><h2 class="ps-section-title">Essential apps</h2></div><div class="hscroll-row" id="essential-row"></div></section>
+    <section class="ps-section anim-target"><div class="ps-section-header"><h2 class="ps-section-title">Premium tools</h2></div><div class="hscroll-row" id="tools-row"></div></section>
+    <section class="ps-section anim-target"><div class="ps-section-header"><h2 class="ps-section-title">Social &amp; communication</h2></div><div class="hscroll-row" id="social-row"></div></section>
+    <section class="ps-section anim-target"><div class="ps-section-header"><h2 class="ps-section-title">Popular games</h2></div><div class="hscroll-row" id="games-row"></div></section>
+    <footer class="ps-footer">
+        <div class="ps-footer-brand">mods<span>4u</span></div>
+        <div class="ps-footer-links"><a href="#">About</a><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Contact</a></div>
+        <p>&copy; 2025 mods4u. All rights reserved.</p>
+    </footer>
+</main>
+
+<!-- APP DETAIL (SPA overlay) -->
+<main class="app-detail-page" id="app-detail-page">
+    <button class="detail-back" onclick="showStorefront()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+    </button>
+    <div class="detail-hero" id="detail-hero"></div>
+    <div class="detail-grid">
+        <div>
+            <div class="detail-section"><h3 class="detail-section-title">Screenshots</h3><div class="screenshots-row" id="screenshots-row"></div></div>
+            <div class="detail-section"><h3 class="detail-section-title">About this app</h3><div id="detail-about"></div></div>
+            <div class="detail-section"><h3 class="detail-section-title">What's new</h3><div id="detail-whats-new"></div></div>
+            <div class="detail-section"><h3 class="detail-section-title">Ratings and reviews</h3><div id="detail-ratings"></div></div>
+        </div>
+        <div>
+            <div class="detail-section"><h3 class="detail-section-title">App info</h3><table class="info-table" id="detail-info-table"></table></div>
+            <div class="security-card">
+                <div class="security-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+                <div class="security-text"><strong>Security verified</strong><br>This app has passed security checks and is safe to install.</div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+        <button class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="4" y1="12" x2="8" y2="12"/><circle cx="16" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="18" cy="13" r="1" fill="currentColor" stroke="none"/></svg>Games</button>
+        <button class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Apps</button>
+        <button class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>Offers</button>
+        <button class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Books</button>
+    </div>
+</nav>
+
+<script type="module">
+import apps from './apps.json';
+
+// ── THEME ──
+(function() {
+    const saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
+})();
+window.toggleTheme = function() {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+};
+const ts = document.createElement('style');
+ts.textContent = `[data-theme="dark"] .sun-icon{display:block!important}[data-theme="light"] .moon-icon{display:block!important}[data-theme="dark"] .moon-icon{display:none!important}[data-theme="light"] .sun-icon{display:none!important}`;
+document.head.appendChild(ts);
+
+// ── TAB SWITCHING ──
+window.switchTab = function(el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+};
+
+// ── CATEGORY FILTER ──
+document.getElementById('categoryChips').addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const cat = chip.dataset.cat;
+    const filtered = cat === 'All' ? apps : apps.filter(a => a.category === cat);
+    renderSections(filtered);
+});
+
+// ── SEARCH ──
+document.getElementById('searchInput').addEventListener('input', function() {
+    const q = this.value.trim().toLowerCase();
+    if (!q) { renderSections(apps); return; }
+    const matches = apps.filter(a => a.name.toLowerCase().includes(q) || a.developer.toLowerCase().includes(q) || a.category.toLowerCase().includes(q));
+    renderSections(matches);
+});
+
+// ── RENDER ──
+function renderSections(list) {
+    renderBanner(list.slice(0, 4));
+    renderRow('essential-row', list.slice(0, 6));
+    renderRow('tools-row', list.filter(a => a.category === 'Tools' || a.category === 'Personalization' || a.category === 'Photography'));
+    renderRow('social-row', list.filter(a => a.category === 'Social'));
+    renderRow('games-row', list.filter(a => a.category === 'Entertainment' || a.category === 'Music'));
+    bindScrollAnimations();
+}
+
+function renderBanner(list) {
+    document.getElementById('banner-row').innerHTML = list.map(app => `
+        <div class="banner-card" onclick="openAppDetail('${app.key}')">
+            <div class="banner-image" style="background:${app.bannerBg}">
+                ${app.iconSvg.replace('width="48" height="48"', 'width="72" height="72"')}
+            </div>
+            <div class="banner-body">
+                <div class="card-name">${app.name}</div>
+                <div class="card-meta"><span class="star">&#9733;</span> ${app.rating} &middot; ${app.category}</div>
+                <button class="install-btn" style="height:36px;padding:0 24px;font-size:13px;" onclick="event.stopPropagation(); window.open('${app.downloadUrl}', '_blank')">Install</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderRow(id, list) {
+    document.getElementById(id).innerHTML = list.map(app => `
+        <div class="app-card-sm" onclick="openAppDetail('${app.key}')">
+            <div class="card-icon" style="background:${app.iconBg}">
+                ${app.iconSvg.replace('width="48" height="48"', 'width="56" height="56"')}
+            </div>
+            <div class="card-name">${app.name}</div>
+            <div class="card-meta"><span class="star">&#9733;</span> ${app.rating}</div>
+        </div>
+    `).join('');
+}
+
+// ── APP DETAIL ──
+window.openAppDetail = function(key) {
+    const app = apps.find(a => a.key === key);
+    if (!app) return;
+    document.getElementById('storefront').classList.add('hidden');
+    document.getElementById('app-detail-page').classList.add('active');
+    window.scrollTo(0, 0);
+    document.title = `${app.name} — mods4u`;
+
+    // Hero
+    document.getElementById('detail-hero').innerHTML = `
+        <div class="detail-icon" style="background:${app.iconBg}">${app.iconSvg.replace('width="48" height="48"', 'width="80" height="80"')}</div>
+        <div class="detail-info">
+            <h1 class="detail-app-name">${app.name}</h1>
+            <div class="detail-dev">${app.developer}</div>
+            <div class="detail-stats"><span class="star">&#9733;</span><span class="star">${app.rating}</span><span style="margin-left:4px">${app.reviews} reviews</span></div>
+            <div class="detail-tags">${app.tags.map(t => `<span class="detail-tag">${t}</span>`).join('')}</div>
+            <div class="detail-actions">
+                <a href="${app.downloadUrl}" class="install-btn" target="_blank" rel="noopener">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Install
+                </a>
+            </div>
+        </div>`;
+
+    // Screenshots
+    const sc = ['#f0f4ec','#e8f0fe','#fce8e6','#e6f4ea','#f3e8fd','#fff8e1'];
+    document.getElementById('screenshots-row').innerHTML = [0,1,2,3,4].map((_, i) => `
+        <div class="screenshot"><div class="screenshot-placeholder" style="background:${sc[i%sc.length]}">
+            <div><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--md-on-surface-variant)" stroke-width="1.5" style="margin:0 auto 8px;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Screenshot ${i+1}</div>
+        </div></div>`).join('');
+
+    // About
+    document.getElementById('detail-about').innerHTML = app.fullDesc;
+
+    // What's New
+    document.getElementById('detail-whats-new').innerHTML = `
+        <div style="background:var(--md-surface-container);border-radius:var(--md-radius-sm);padding:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                <span style="font-weight:700;color:var(--md-primary);font-size:13px;">Version ${app.version}</span>
+                <span style="font-size:12px;color:var(--md-on-surface-variant);">${app.updated}</span>
+            </div>
+            <ul style="list-style:none;padding:0;">
+                ${app.changelog.map(item => `<li style="font-size:13px;color:var(--md-on-surface-variant);padding:4px 0 4px 20px;position:relative;"><span style="position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--md-primary);border-radius:50%;"></span>${item}</li>`).join('')}
+            </ul>
+        </div>`;
+
+    // Ratings
+    document.getElementById('detail-ratings').innerHTML = `
+        <div class="rating-overview">
+            <div><div class="rating-big">${app.rating}</div><div class="rating-stars-big">${'&#9733;'.repeat(Math.floor(app.rating))}${app.rating%1>=0.5?'&#9734;':''}</div><div class="rating-count">${app.reviews} reviews</div></div>
+            <div class="rating-bars">${[5,4,3,2,1].map((s,i)=>`<div class="rating-bar-row"><span class="rating-bar-label">${s}</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:${app.ratingDist[i]}%"></div></div></div>`).join('')}</div>
+        </div>
+        ${app.reviews_data.length>0?app.reviews_data.map(r=>`<div class="review-card"><div class="review-header"><div class="review-avatar">${r.author.charAt(0)}</div><div><div class="review-author">${r.author}</div><div class="review-date">${r.date}</div></div></div><div class="review-stars">${'&#9733;'.repeat(r.stars)}${'&#9734;'.repeat(5-r.stars)}</div><div class="review-text">${r.text}</div></div>`).join(''):'<p style="font-size:14px;color:var(--md-on-surface-variant);">No reviews yet.</p>'}`;
+
+    // Info table
+    document.getElementById('detail-info-table').innerHTML = `
+        <tr><td>Developer</td><td>${app.developer}</td></tr>
+        <tr><td>Category</td><td>${app.category}</td></tr>
+        <tr><td>Updated</td><td>${app.updated}</td></tr>
+        <tr><td>Size</td><td>${app.size}</td></tr>
+        <tr><td>Installs</td><td>${app.downloads}</td></tr>
+        <tr><td>Version</td><td>${app.version}</td></tr>
+        <tr><td>Requires</td><td>Android ${app.android}</td></tr>`;
+};
+
+window.showStorefront = function() {
+    document.getElementById('app-detail-page').classList.remove('active');
+    document.getElementById('storefront').classList.remove('hidden');
+    document.title = 'mods4u — Premium Android Mods';
+    window.scrollTo(0, 0);
+};
+
+// ── SCROLL ANIMATIONS ──
+function bindScrollAnimations() {
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.anim-target').forEach(el => obs.observe(el));
+}
+
+// ── INIT ──
+renderSections(apps);
+</script>
 </body>
 </html>
