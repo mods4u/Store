@@ -1427,7 +1427,7 @@ function renderStorefront() {
     bannerRow.innerHTML = apps.slice(0, 4).map(app => `
         <div class="banner-card" onclick="openAppDetail('${app.id}')">
             <div class="banner-image" style="background:${app.bannerBg}">
-                ${app.iconSvg.replace('width="48" height="48"', 'width="72" height="72"')}
+                <img src="images/icons/${app.id}.png" alt="${app.name}" style="width:72px;height:72px;border-radius:16px;object-fit:cover;" onerror="this.style.display='none'">
             </div>
             <div class="banner-body">
                 <div class="card-name">${app.name}</div>
@@ -1452,7 +1452,7 @@ function renderAppRow(containerId, appList) {
     container.innerHTML = appList.map(app => `
         <div class="app-card-sm" onclick="openAppDetail('${app.id}')">
             <div class="card-icon" style="background:${app.iconBg}">
-                ${app.iconSvg.replace('width="48" height="48"', 'width="56" height="56"')}
+                <img src="images/icons/${app.id}.png" alt="${app.name}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" onerror="this.style.display='none'">
             </div>
             <div class="card-name">${app.name}</div>
             <div class="card-meta"><span class="star">&#9733;</span> ${app.rating}</div>
