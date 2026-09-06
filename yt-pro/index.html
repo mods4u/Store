@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<!-- ================================================================
-     mods4u.github.io — Premium Android Mods
-     Modern Play Store Clone (2026) — Material Design 3
-     
-     Quick Edit Guide:
-     - Download links → Search "DOWNLOAD_LINKS" in the <script> section
-     - App data      → Search "APP DATA" to edit app names, icons, descriptions
-     - Theme colors  → Search ":root" and "[data-theme=\"dark\"]" in <style>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YouTube Pro - Ad-free YouTube with background play | mods4u">
+    <title>YouTube Pro — mods4u</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        
      - Add new app   → Copy any app object in the array, change id & details
      ================================================================ -->
 <html lang="en" data-theme="light">
@@ -879,14 +883,20 @@
             .search-container { max-width: none; }
             .rating-overview { flex-direction: column; text-align: center; }
         }
+    
+        
+        /* --- App Page Overrides --- */
+        main { padding-top: 0; }
+        .app-page-container { padding: 16px; }
+        .header-row .search-container { display: none; }
+        .tabs-container { display: none; }
+
     </style>
 </head>
 <body>
-
-<!-- ==================== HEADER ==================== -->
 <header>
     <div class="header-row">
-        <a href="#" class="header-logo" onclick="window.scrollTo(0,0); return false;">
+        <a href="../" class="header-logo" >
             <svg viewBox="0 0 48 48" fill="none">
                 <path d="M6 8C6 6.89543 6.89543 6 8 6H18L24 14H40C41.1046 14 42 14.8954 42 16V38C42 39.1046 41.1046 40 40 40H8C6.89543 40 6 39.1046 6 38V8Z" fill="#01875f"/>
                 <path d="M6 20H42V38C42 39.1046 41.1046 40 40 40H8C6.89543 40 6 39.1046 6 38V20Z" fill="#01714e"/>
@@ -929,84 +939,164 @@
     </div>
 </header>
 
-<!-- ==================== STOREFRONT (main page) ==================== -->
-<main class="storefront" id="storefront">
 
-    <!-- Category Chips -->
-    <div style="padding-top:16px;">
-        <div class="category-chips">
-            <button class="chip active">All</button>
-            <button class="chip">Tools</button>
-            <button class="chip">Social</button>
-            <button class="chip">Entertainment</button>
-            <button class="chip">Productivity</button>
-            <button class="chip">Music</button>
-            <button class="chip">Photography</button>
-            <button class="chip">Games</button>
+<main class="app-page-container">
+    <a href="../" class="detail-back">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Store
+    </a>
+
+    <div class="detail-hero">
+        <div class="detail-icon" style="background:linear-gradient(135deg, #FF0000, #CC0000)">
+            <svg viewBox="0 0 48 48" fill="none"><rect width="80" height="80" rx="10" fill="#FF0000"/><path d="M20 16v16l14-8-14-8z" fill="white"/></svg>
+        </div>
+        <div class="detail-info">
+            <h1 class="detail-app-name">YouTube Pro</h1>
+            <div class="detail-dev">Video Mods</div>
+            <div class="detail-stats">
+                <span class="star">&#9733;</span>
+                <span class="star">4.8</span>
+                <span style="margin-left:4px">45K reviews</span>
+            </div>
+            <div class="detail-tags">
+                <span class="detail-tag">Video</span><span class="detail-tag">Entertainment</span><span class="detail-tag">Streaming</span>
+            </div>
+            <div class="detail-actions">
+                <a href="#" class="install-btn" target="_blank" rel="noopener">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Install
+                </a>
+            </div>
         </div>
     </div>
 
-    <!-- Sponsored / Banner -->
-    <section class="ps-section anim-target">
-        <div class="ps-section-header">
-            <h2 class="ps-section-title">Suggested for you</h2>
-            <button class="ps-section-more">See more</button>
+    <div class="detail-grid">
+        <div>
+            <div class="detail-section">
+                <h3 class="detail-section-title">Screenshots</h3>
+                <div class="screenshots-row">
+                    
+            <div class="screenshot">
+                <div class="screenshot-placeholder" style="background:#f0f4ec">
+                    <div>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--md-on-surface-variant)" stroke-width="1.5" style="margin:0 auto 8px;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Screenshot 1
+                    </div>
+                </div>
+            </div>
+            <div class="screenshot">
+                <div class="screenshot-placeholder" style="background:#e8f0fe">
+                    <div>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--md-on-surface-variant)" stroke-width="1.5" style="margin:0 auto 8px;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Screenshot 2
+                    </div>
+                </div>
+            </div>
+            <div class="screenshot">
+                <div class="screenshot-placeholder" style="background:#fce8e6">
+                    <div>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--md-on-surface-variant)" stroke-width="1.5" style="margin:0 auto 8px;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Screenshot 3
+                    </div>
+                </div>
+            </div>
+            <div class="screenshot">
+                <div class="screenshot-placeholder" style="background:#e6f4ea">
+                    <div>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--md-on-surface-variant)" stroke-width="1.5" style="margin:0 auto 8px;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Screenshot 4
+                    </div>
+                </div>
+            </div>
+            <div class="screenshot">
+                <div class="screenshot-placeholder" style="background:#f3e8fd">
+                    <div>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--md-on-surface-variant)" stroke-width="1.5" style="margin:0 auto 8px;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Screenshot 5
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+            <div class="detail-section">
+                <h3 class="detail-section-title">About this app</h3>
+                <div><p>YouTube Pro provides the ultimate ad-free video experience. No more interruptions, no more forced ads before every video. Just pure, uninterrupted content.</p><p style="margin-top:12px;">Additional features include background playback, picture-in-picture mode, download videos for offline viewing, and SponsorBlock integration to skip sponsor segments automatically.</p></div>
+            </div>
+            <div class="detail-section">
+                <h3 class="detail-section-title">What's new</h3>
+                <div><div style="background:var(--md-surface-container);border-radius:var(--md-radius-sm);padding:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                <span style="font-weight:700;color:var(--md-primary);font-size:13px;">Version 18.5</span>
+                <span style="font-size:12px;color:var(--md-on-surface-variant);">Dec 15, 2023</span>
+            </div>
+            <ul style="list-style:none;padding:0;"><li style="font-size:13px;color:var(--md-on-surface-variant);padding:4px 0 4px 20px;position:relative;"><span style="position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--md-primary);border-radius:50%;"></span>Updated to latest YouTube base</li><li style="font-size:13px;color:var(--md-on-surface-variant);padding:4px 0 4px 20px;position:relative;"><span style="position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--md-primary);border-radius:50%;"></span>New SponsorBlock integration</li><li style="font-size:13px;color:var(--md-on-surface-variant);padding:4px 0 4px 20px;position:relative;"><span style="position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--md-primary);border-radius:50%;"></span>Improved PiP mode</li><li style="font-size:13px;color:var(--md-on-surface-variant);padding:4px 0 4px 20px;position:relative;"><span style="position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--md-primary);border-radius:50%;"></span>Bug fixes</li></ul>
+        </div></div>
+            </div>
+            <div class="detail-section">
+                <h3 class="detail-section-title">Ratings and reviews</h3>
+                <div><div class="rating-overview">
+            <div>
+                <div class="rating-big">4.8</div>
+                <div class="rating-stars-big">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                <div class="rating-count">45K reviews</div>
+            </div>
+            <div class="rating-bars"><div class="rating-bar-row">
+                        <span class="rating-bar-label">5</span>
+                        <div class="rating-bar-track"><div class="rating-bar-fill" style="width:68%"></div></div>
+                    </div><div class="rating-bar-row">
+                        <span class="rating-bar-label">4</span>
+                        <div class="rating-bar-track"><div class="rating-bar-fill" style="width:20%"></div></div>
+                    </div><div class="rating-bar-row">
+                        <span class="rating-bar-label">3</span>
+                        <div class="rating-bar-track"><div class="rating-bar-fill" style="width:7%"></div></div>
+                    </div><div class="rating-bar-row">
+                        <span class="rating-bar-label">2</span>
+                        <div class="rating-bar-track"><div class="rating-bar-fill" style="width:3%"></div></div>
+                    </div><div class="rating-bar-row">
+                        <span class="rating-bar-label">1</span>
+                        <div class="rating-bar-track"><div class="rating-bar-fill" style="width:2%"></div></div>
+                    </div></div>
         </div>
-        <div class="hscroll-row" id="banner-row"></div>
-    </section>
-
-    <!-- Essential Apps -->
-    <section class="ps-section anim-target">
-        <div class="ps-section-header">
-            <h2 class="ps-section-title">Essential apps</h2>
-            <button class="ps-section-more">See more</button>
+        <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">R</div>
+                    <div>
+                        <div class="review-author">Ryan B.</div>
+                        <div class="review-date">Dec 16, 2023</div>
+                    </div>
+                </div>
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="review-text">No ads AND sponsor block? This is the only way to watch YouTube now.</div>
+            </div></div>
+            </div>
         </div>
-        <div class="hscroll-row" id="essential-row"></div>
-    </section>
-
-    <!-- Premium Tools -->
-    <section class="ps-section anim-target">
-        <div class="ps-section-header">
-            <h2 class="ps-section-title">Premium tools</h2>
-            <button class="ps-section-more">See more</button>
+        <div>
+            <div class="detail-section">
+                <h3 class="detail-section-title">App info</h3>
+                <table class="info-table">
+                    <tr><td>Developer</td><td>Video Mods</td></tr>
+                    <tr><td>Category</td><td>Entertainment</td></tr>
+                    <tr><td>Updated</td><td>Dec 15, 2023</td></tr>
+                    <tr><td>Size</td><td>48 MB</td></tr>
+                    <tr><td>Installs</td><td>10M+</td></tr>
+                    <tr><td>Version</td><td>18.5</td></tr>
+                    <tr><td>Requires</td><td>Android 8.0+</td></tr>
+                </table>
+            </div>
+            <div class="security-card">
+                <div class="security-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                </div>
+                <div class="security-text">
+                    <strong>Security verified</strong><br>
+                    This app has passed security checks and is safe to install.
+                </div>
+            </div>
         </div>
-        <div class="hscroll-row" id="tools-row"></div>
-    </section>
-
-    <!-- Social & Communication -->
-    <section class="ps-section anim-target">
-        <div class="ps-section-header">
-            <h2 class="ps-section-title">Social &amp; communication</h2>
-            <button class="ps-section-more">See more</button>
-        </div>
-        <div class="hscroll-row" id="social-row"></div>
-    </section>
-
-    <!-- Games -->
-    <section class="ps-section anim-target">
-        <div class="ps-section-header">
-            <h2 class="ps-section-title">Popular games</h2>
-            <button class="ps-section-more">See more</button>
-        </div>
-        <div class="hscroll-row" id="games-row"></div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="ps-footer">
-        <div class="ps-footer-brand">mods<span>4u</span></div>
-        <div class="ps-footer-links">
-            <a href="#">About</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Contact</a>
-        </div>
-        <p>&copy; 2025 mods4u. All rights reserved.</p>
-    </footer>
+    </div>
 </main>
 
 
-
-<!-- ==================== BOTTOM NAV (mobile) ==================== -->
 <nav class="bottom-nav">
     <div class="bottom-nav-inner">
         <button class="nav-item active" aria-label="Games">
@@ -1028,302 +1118,14 @@
     </div>
 </nav>
 
+
 <script>
-/* ================================================================
-   DOWNLOAD LINKS — Edit all download URLs here for easy management
-   ================================================================ */
-const DOWNLOAD_LINKS = {
-    'snapchat-pro':   'https://github.com/mods4u/Store/raw/refs/heads/main/snapPro.apk',  // Snapchat Pro APK
-    'insta-pro':      '#',                                                                                   // Instagram Pro (not available yet)
-    'wa-pro':         '#',                                                                                   // WhatsApp Pro (not available yet)
-    'spotify-pro':    '#',                                                                                   // Spotify Pro (not available yet)
-    'yt-pro':         '#',                                                                                   // YouTube Pro (not available yet)
-    'capcut-pro':     '#',                                                                                   // CapCut Pro (not available yet)
-    'nova-launcher':  'https://github.com/mods4u/Store/raw/refs/heads/main/6677.zip',         // Nova Launcher Pro (legacy bundle)
-    'tiktok-pro':     '#'                                                                                    // TikTok Pro (not available yet)
-};
-
-// ============ APP DATA (name, icons, descriptions, reviews) =============
-const apps = [
-    {
-        id: 'snapchat-pro',
-        name: 'Snapchat Pro',
-        dev: 'System Tools Dev',
-        rating: 4.8,
-        reviews: '12.4K',
-        downloads: '1M+',
-        category: 'Tools',
-        size: 'Varies',
-        version: '2.4.0',
-        android: '8.0+',
-        updated: 'Oct 24, 2023',
-        color: '#FFFC00',
-        iconBg: 'linear-gradient(135deg, #FFFC00, #FFD000)',
-        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#FFFC00"/><path d="M24 10C17.92 10 13 14.92 13 21c0 2.8.96 5.38 2.56 7.42A9.96 9.96 0 0 0 13 34h22a9.96 9.96 0 0 0-2.56-5.58C34.04 26.38 35 23.8 35 21c0-6.08-4.92-11-11-11z" fill="#1A1A2E" opacity="0.7"/></svg>',
-        bannerBg: 'linear-gradient(135deg, #FFFC00 0%, #FFD000 50%, #FFA000 100%)',
-        shortDesc: 'Next-gen gesture controls for Android',
-        fullDesc: '<p>Experience the next generation of Android navigation. Snapchat Pro replaces standard buttons with intuitive gestures, offering a seamless, full-screen experience optimized for modern devices.</p><p style="margin-top:12px;">Built with performance and battery life at its core, the app uses advanced gesture recognition algorithms that learn your habits over time. Navigate naturally with swipe, pinch, and tap gestures that feel fluid and responsive across all screen sizes.</p><p style="margin-top:12px;">Full dark mode support helps reduce eye strain during nighttime use while preserving battery life on OLED displays. Customizable sensitivity settings let you fine-tune every gesture to match your personal preference.</p>',
-        tags: ['Tools', 'Productivity', 'Personalization', 'Gesture'],
-        changelog: ['Improved gesture recognition accuracy by 20%', 'Fixed compatibility issues with Android 14', 'New "Quick Switch" animation for faster navigation', 'Reduced memory usage by 15%', 'Bug fixes and performance improvements'],
-        ratingDist: [65, 20, 8, 4, 3],
-        downloadUrl: DOWNLOAD_LINKS['snapchat-pro'],
-        reviews_data: [
-            { author: 'Alex M.', date: 'Nov 12, 2023', stars: 5, text: 'Absolutely love this app! The gesture controls are so smooth and intuitive. Battery life has improved significantly since I started using it.' },
-            { author: 'Sarah K.', date: 'Oct 30, 2023', stars: 5, text: 'Best gesture navigation app out there. The dark mode is beautiful and the customization options are endless.' },
-            { author: 'James L.', date: 'Oct 25, 2023', stars: 4, text: 'Great app overall. Would love to see more gesture options in future updates. The recent Android 14 fix was much needed.' }
-        ]
-    },
-    {
-        id: 'insta-pro',
-        name: 'Instagram Pro',
-        dev: 'Social Mods',
-        rating: 4.7,
-        reviews: '8.2K',
-        downloads: '500K+',
-        category: 'Social',
-        size: '52 MB',
-        version: '10.5.0',
-        android: '9.0+',
-        updated: 'Dec 1, 2023',
-        color: '#DD2A7B',
-        iconBg: 'linear-gradient(135deg, #F58529, #DD2A7B, #8134AF)',
-        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="url(#ig)"/><defs><linearGradient id="ig" x1="0" y1="48" x2="48" y2="0"><stop stop-color="#F58529"/><stop offset="0.5" stop-color="#DD2A7B"/><stop offset="1" stop-color="#8134AF"/></linearGradient></defs><rect x="8" y="8" width="32" height="32" rx="8" stroke="white" stroke-width="2.5" fill="none"/><circle cx="24" cy="24" r="8" stroke="white" stroke-width="2.5" fill="none"/><circle cx="34" cy="14" r="2" fill="white"/></svg>',
-        bannerBg: 'linear-gradient(135deg, #F58529 0%, #DD2A7B 50%, #8134AF 100%)',
-        shortDesc: 'Enhanced Instagram with extra features',
-        fullDesc: '<p>Instagram Pro brings you an enhanced social media experience with features not available in the standard app. Download media, view profiles anonymously, and enjoy an ad-free browsing experience.</p><p style="margin-top:12px;">Built on the latest Instagram base, you get all the original features plus exclusive additions like HD story downloads, ghost mode for stories, and advanced privacy controls.</p>',
-        tags: ['Social', 'Photography', 'Media'],
-        changelog: ['Added story download in HD quality', 'New ghost mode for viewing stories', 'Performance improvements', 'Bug fixes'],
-        ratingDist: [60, 25, 10, 3, 2],
-        downloadUrl: DOWNLOAD_LINKS['insta-pro'],
-        reviews_data: [
-            { author: 'Priya R.', date: 'Dec 5, 2023', stars: 5, text: 'The story download feature is a game changer! Works perfectly every time.' },
-            { author: 'Mike T.', date: 'Dec 2, 2023', stars: 4, text: 'Love the ghost mode. No more awkward story views.' }
-        ]
-    },
-    {
-        id: 'wa-pro',
-        name: 'WhatsApp Pro',
-        dev: 'Chat Mods',
-        rating: 4.6,
-        reviews: '15K',
-        downloads: '2M+',
-        category: 'Social',
-        size: '65 MB',
-        version: '12.0',
-        android: '8.0+',
-        updated: 'Nov 15, 2023',
-        color: '#25D366',
-        iconBg: 'linear-gradient(135deg, #25D366, #128C7E)',
-        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#25D366"/><path d="M24 10C16.268 10 10 16.268 10 24c0 2.856.748 5.536 2.056 7.856L10 38l6.4-2C18.656 37.248 21.248 38 24 38c7.732 0 14-6.268 14-14S31.732 10 24 10z" fill="white"/></svg>',
-        bannerBg: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
-        shortDesc: 'Feature-rich WhatsApp with privacy tools',
-        fullDesc: '<p>WhatsApp Pro delivers an upgraded messaging experience with advanced privacy features, customization options, and media sharing capabilities that go beyond the standard app.</p><p style="margin-top:12px;">Enjoy features like hiding online status, custom themes, scheduled messages, and enhanced file sharing with support for larger file sizes and more formats.</p>',
-        tags: ['Social', 'Messaging', 'Communication'],
-        changelog: ['New custom theme engine', 'Scheduled messages feature', 'Enhanced privacy controls', 'Bug fixes and stability improvements'],
-        ratingDist: [55, 28, 10, 4, 3],
-        downloadUrl: DOWNLOAD_LINKS['wa-pro'],
-        reviews_data: [
-            { author: 'David W.', date: 'Nov 18, 2023', stars: 5, text: 'The theme customization is incredible. My WhatsApp never looked this good.' }
-        ]
-    },
-    {
-        id: 'spotify-pro',
-        name: 'Spotify Pro',
-        dev: 'Music Mods',
-        rating: 4.9,
-        reviews: '22K',
-        downloads: '5M+',
-        category: 'Music',
-        size: '38 MB',
-        version: '8.9.4',
-        android: '8.0+',
-        updated: 'Dec 10, 2023',
-        color: '#1DB954',
-        iconBg: 'linear-gradient(135deg, #1DB954, #169C46)',
-        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#1DB954"/><circle cx="24" cy="26" r="12" stroke="white" stroke-width="2.5" fill="none"/><path d="M18 23c3-1 8-1.5 12 0" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M20 27c2-.7 5-1 8 0" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>',
-        bannerBg: 'linear-gradient(135deg, #1DB954 0%, #169C46 50%, #0d7a38 100%)',
-        shortDesc: 'Premium music with unlimited skips',
-        fullDesc: '<p>Spotify Pro unlocks the full potential of your music streaming experience. Enjoy ad-free listening, unlimited skips, extreme audio quality, and the ability to download any track for offline playback.</p><p style="margin-top:12px;">With our optimized version, you also get background play controls, no forced shuffle, and access to all premium features without a subscription.</p>',
-        tags: ['Music', 'Audio', 'Streaming', 'Entertainment'],
-        changelog: ['Extreme audio quality unlocked', 'New mini-player widget', 'Improved offline mode', 'Performance optimizations'],
-        ratingDist: [72, 18, 6, 2, 2],
-        downloadUrl: DOWNLOAD_LINKS['spotify-pro'],
-        reviews_data: [
-            { author: 'Emma S.', date: 'Dec 12, 2023', stars: 5, text: 'Finally can skip as much as I want! Audio quality is noticeably better.' },
-            { author: 'Chris P.', date: 'Dec 11, 2023', stars: 5, text: 'Best Spotify mod out there. Updates regularly and works flawlessly.' }
-        ]
-    },
-    {
-        id: 'yt-pro',
-        name: 'YouTube Pro',
-        dev: 'Video Mods',
-        rating: 4.8,
-        reviews: '45K',
-        downloads: '10M+',
-        category: 'Entertainment',
-        size: '48 MB',
-        version: '18.5',
-        android: '8.0+',
-        updated: 'Dec 15, 2023',
-        color: '#FF0000',
-        iconBg: 'linear-gradient(135deg, #FF0000, #CC0000)',
-        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#FF0000"/><path d="M20 16v16l14-8-14-8z" fill="white"/></svg>',
-        bannerBg: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)',
-        shortDesc: 'Ad-free YouTube with background play',
-        fullDesc: '<p>YouTube Pro provides the ultimate ad-free video experience. No more interruptions, no more forced ads before every video. Just pure, uninterrupted content.</p><p style="margin-top:12px;">Additional features include background playback, picture-in-picture mode, download videos for offline viewing, and SponsorBlock integration to skip sponsor segments automatically.</p>',
-        tags: ['Video', 'Entertainment', 'Streaming'],
-        changelog: ['Updated to latest YouTube base', 'New SponsorBlock integration', 'Improved PiP mode', 'Bug fixes'],
-        ratingDist: [68, 20, 7, 3, 2],
-        downloadUrl: DOWNLOAD_LINKS['yt-pro'],
-        reviews_data: [
-            { author: 'Ryan B.', date: 'Dec 16, 2023', stars: 5, text: 'No ads AND sponsor block? This is the only way to watch YouTube now.' }
-        ]
-    },
-    {
-        id: 'capcut-pro',
-        name: 'CapCut Pro',
-        dev: 'Edit Mods',
-        rating: 4.7,
-        reviews: '18K',
-        downloads: '3M+',
-        category: 'Photography',
-        size: '95 MB',
-        version: '11.2',
-        android: '9.0+',
-        updated: 'Dec 8, 2023',
-        color: '#00F5FF',
-        iconBg: 'linear-gradient(135deg, #00F5FF, #0099FF)',
-        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="url(#cc)"/><defs><linearGradient id="cc" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#00F5FF"/><stop offset="1" stop-color="#0099FF"/></linearGradient></defs><path d="M16 14l12-4v28l-12-4V14z" fill="white" opacity="0.9"/><circle cx="32" cy="24" r="6" fill="white" opacity="0.7"/></svg>',
-        bannerBg: 'linear-gradient(135deg, #00F5FF 0%, #0099FF 100%)',
-        shortDesc: 'Pro video editor with all effects unlocked',
-        fullDesc: '<p>CapCut Pro unlocks all premium features of the popular video editor. Access every effect, filter, transition, and template without watermarks or in-app purchases.</p><p style="margin-top:12px;">Perfect for content creators who need professional editing tools on mobile. Export in 4K, remove backgrounds, use AI-powered features, and access the full library of templates.</p>',
-        tags: ['Video', 'Editor', 'Photography', 'Creative'],
-        changelog: ['Unlocked all premium effects', 'New AI background removal', '4K export enabled', 'Stability improvements'],
-        ratingDist: [62, 22, 10, 4, 2],
-        downloadUrl: DOWNLOAD_LINKS['capcut-pro'],
-        reviews_data: [
-            { author: 'Lisa M.', date: 'Dec 9, 2023', stars: 5, text: 'All effects unlocked and no watermark! This is amazing for content creation.' }
-        ]
-    },
-    {
-        id: 'nova-launcher',
-        name: 'Nova Launcher Pro',
-        dev: 'Home Screen Mods',
-        rating: 4.5,
-        reviews: '6.8K',
-        downloads: '800K+',
-        category: 'Personalization',
-        size: '18 MB',
-        version: '8.0.16',
-        android: '8.0+',
-        updated: 'Nov 20, 2023',
-        color: '#2196F3',
-        iconBg: 'linear-gradient(135deg, #2196F3, #1565C0)',
-        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#2196F3"/><circle cx="24" cy="18" r="4" fill="white"/><rect x="14" y="26" width="8" height="8" rx="2" fill="white" opacity="0.9"/><rect x="26" y="26" width="8" height="8" rx="2" fill="white" opacity="0.7"/></svg>',
-        bannerBg: 'linear-gradient(135deg, #2196F3 0%, #1565C0 100%)',
-        shortDesc: 'Customizable home screen experience',
-        fullDesc: '<p>Nova Launcher Pro brings the most customizable home screen experience to your Android device. With gesture support, icon packs, and advanced grid layouts.</p>',
-        tags: ['Personalization', 'Launcher', 'Home Screen'],
-        changelog: ['Android 14 fully compatible', 'New gesture shortcuts', 'Performance boost', 'Bug fixes'],
-        ratingDist: [50, 30, 12, 5, 3],
-        downloadUrl: DOWNLOAD_LINKS['nova-launcher'],
-        reviews_data: []
-    },
-    {
-        id: 'tiktok-pro',
-        name: 'TikTok Pro',
-        dev: 'Social Mods',
-        rating: 4.6,
-        reviews: '30K',
-        downloads: '8M+',
-        category: 'Social',
-        size: '72 MB',
-        version: '32.0',
-        android: '8.0+',
-        updated: 'Dec 18, 2023',
-        color: '#010101',
-        iconBg: 'linear-gradient(135deg, #25F4EE, #FE2C55)',
-        iconSvg: '<svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#010101"/><path d="M30 14v14a6 6 0 1 1-4-5.66V18a10 10 0 1 0 8 9.83V18a14 14 0 0 1-4 .56V14h0z" fill="#FE2C55"/><path d="M30 14v4.56a14 14 0 0 0 4-.56V14h-4z" fill="#25F4EE"/></svg>',
-        bannerBg: 'linear-gradient(135deg, #25F4EE 0%, #FE2C55 100%)',
-        shortDesc: 'No ads, no watermark, download videos',
-        fullDesc: '<p>TikTok Pro removes all ads, watermarks, and download restrictions. Enjoy a clean TikTok experience with the ability to save any video directly to your device.</p>',
-        tags: ['Social', 'Video', 'Entertainment'],
-        changelog: ['Removed all ads', 'No watermark on downloads', 'Region unlock feature', 'Performance improvements'],
-        ratingDist: [58, 24, 10, 5, 3],
-        downloadUrl: DOWNLOAD_LINKS['tiktok-pro'],
-        reviews_data: []
-    }
-];
-
-// ============ RENDER STOREFRONT (builds app rows from data) =============
-function renderStorefront() {
-    // Banner row (first 4)
-    const bannerRow = document.getElementById('banner-row');
-    bannerRow.innerHTML = apps.slice(0, 4).map(app => `
-        <div class="banner-card" onclick="openAppDetail('${app.id}')">
-            <div class="banner-image" style="background:${app.bannerBg}">
-                ${app.iconSvg.replace('width="48" height="48"', 'width="72" height="72"')}
-            </div>
-            <div class="banner-body">
-                <div class="card-name">${app.name}</div>
-                <div class="card-meta"><span class="star">&#9733;</span> ${app.rating} &middot; ${app.category}</div>
-                <button class="install-btn" style="height:36px;padding:0 24px;font-size:13px;" onclick="event.stopPropagation(); window.open('${app.downloadUrl}', '_blank')">Install</button>
-            </div>
-        </div>
-    `).join('');
-
-    // Essential apps
-    renderAppRow('essential-row', apps.slice(0, 6));
-    // Tools
-    renderAppRow('tools-row', [apps[0], apps[6], apps[5], apps[4], apps[7]]);
-    // Social
-    renderAppRow('social-row', [apps[1], apps[2], apps[7], apps[3]]);
-    // Games (reuse some icons with different style)
-    renderAppRow('games-row', [apps[7], apps[3], apps[5], apps[4], apps[0], apps[2]]);
-}
-
-function renderAppRow(containerId, appList) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = appList.map(app => `
-        <div class="app-card-sm" onclick="openAppDetail('${app.id}')">
-            <div class="card-icon" style="background:${app.iconBg}">
-                ${app.iconSvg.replace('width="48" height="48"', 'width="56" height="56"')}
-            </div>
-            <div class="card-name">${app.name}</div>
-            <div class="card-meta"><span class="star">&#9733;</span> ${app.rating}</div>
-        </div>
-    `).join('');
-}
-
-// ============ APP DETAIL (opens when user clicks an app) =============
-function openAppDetail(appId) {
-    window.location.href = appId + '/index.html';
-}
-
-
-
-// ============ TAB SWITCHING =============
-function switchTab(el) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-}
-
-// ============ CATEGORY CHIP FILTER =============
-document.querySelectorAll('.chip').forEach(chip => {
-    chip.addEventListener('click', function() {
-        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-        this.classList.add('active');
-    });
-});
-
-// ============ DARK MODE TOGGLE =============
 function toggleTheme() {
     const html = document.documentElement;
     const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
 }
-
 (function() {
     const saved = localStorage.getItem('theme');
     if (saved) {
@@ -1332,26 +1134,9 @@ function toggleTheme() {
         document.documentElement.setAttribute('data-theme', 'dark');
     }
 })();
-
-// ============ SCROLL REVEAL ANIMATIONS =============
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-        if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            observer.unobserve(e.target);
-        }
-    });
-}, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
-
-document.querySelectorAll('.anim-target').forEach(el => observer.observe(el));
-
-// Hide/show sun/moon
 const style = document.createElement('style');
-style.textContent = `[data-theme="dark"] .sun-icon { display: block !important; } [data-theme="light"] .moon-icon { display: block !important; } [data-theme="dark"] .moon-icon { display: none !important; } [data-theme="light"] .sun-icon { display: none !important; }`;
+style.textContent = '[data-theme="dark"] .sun-icon { display: block !important; } [data-theme="light"] .moon-icon { display: block !important; } [data-theme="dark"] .moon-icon { display: none !important; } [data-theme="light"] .sun-icon { display: none !important; }';
 document.head.appendChild(style);
-
-// Init
-renderStorefront();
 </script>
 
 </body>
