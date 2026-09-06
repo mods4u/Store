@@ -1,147 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Page - Google Play Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/material.css">
-    <link rel="stylesheet" href="../css/layout.css">
-    <link rel="stylesheet" href="../css/app-page.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp — ModPlay</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/app-page.css">
 </head>
 <body>
-    <!-- Top Bar -->
-    <header class="top-bar">
-        <button class="app-back-button">←</button>
-        <div class="app-icon-large">
-            <!-- App icon will be set by JS -->
-        </div>
-        <div class="app-info-flex">
-            <h1 class="app-name-large">App Name</h1>
-            <div class="developer-row">
-                <span>Developer</span>
-                <!-- Verified badge will be set by JS -->
-            </div>
-            <p class="contains-ads">Contains ads</p>
-        </div>
-        <button class="install-button ripple">
-            INSTALL
-            <div class="ripple"></div>
-        </div>
-    </header>
-
-    <!-- Stats Row -->
-    <div class="stats-row">
-        <div class="stat-column">
-            <div class="stat-rating" aria-label="Rating">
-                <!-- Stars will be set by JS -->
-            </div>
-            <div class="stat-value">4.2</div>
-            <div class="stat-label">8.5M</div>
-        </div>
+  <header class="topbar">
+    <div class="topbar__left">
+      <a href="/" class="topbar__brand">
+        <svg class="topbar__logo" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
+          <path d="M10 8l6 8-6 8h4l6-8-6-8h-4z" fill="white"/>
+        </svg>
+        <span class="topbar__title">ModPlay</span>
+      </a>
     </div>
-
-    <!-- Screenshot Carousel -->
-    <section class="screenshots-section">
-        <h2 class="section-title">Screenshots</h2>
-        <div class="screenshot-carousel">
-            <!-- Screenshot cards will be set by JS -->
-        </div>
-    </section>
-
-    <!-- Description Section -->
-    <section class="description-section">
-        <header class="about-header">
-            <h2 class="section-title">About this app</h2>
-            <button class="about-toggle">Show more</button>
-        </header>
-        <p class="about-text">
-            <!-- Description will be set by JS -->
-        </p>
-    </section>
-
-    <!-- Ratings & Reviews -->
-    <section class="reviews-section">
-        <header class="reviews-header">
-            <div class="reviews-score">
-                <div class="reviews-score-value">4.2</div>
-                <div class="reviews-score-stars" aria-label="Rating">
-                    <!-- Stars will be set by JS -->
-                </div>
-                <div class="reviews-count">8.5M reviews</div>
-            </div>
-        </header>
-        <div class="rating-breakdown">
-            <!-- Rating breakdown bars will be set by JS -->
-            <div class="breakdown-row">
-                <div class="breakdown-label">5★</div>
-                <div class="breakdown-bar"><div class="breakdown-fill"></div></div>
-                <div class="breakdown-count">0</div>
-            </div>
-            <div class="breakdown-row">
-                <div class="breakdown-label">4★</div>
-                <div class="breakdown-bar"><div class="breakdown-fill"></div></div>
-                <div class="breakdown-count">0</div>
-            </div>
-            <div class="breakdown-row">
-                <div class="breakdown-label">3★</div>
-                <div class="breakdown-bar"><div class="breakdown-fill"></div></div>
-                <div class="breakdown-count">0</div>
-            </div>
-            <div class="breakdown-row">
-                <div class="breakdown-label">2★</div>
-                <div class="breakdown-bar"><div class="breakdown-fill"></div></div>
-                <div class="breakdown-count">0</div>
-            </div>
-            <div class="breakdown-row">
-                <div class="breakdown-label">1★</div>
-                <div class="breakdown-bar"><div class="breakdown-fill"></div></div>
-                <div class="breakdown-count">0</div>
-            </div>
-        </div>
-        <div class="review-cards-container">
-            <!-- Review cards will be set by JS -->
-        </div>
-    </section>
-
-    <!-- Additional Info -->
-    <section class="additional-info">
-        <div class="info-grid">
-            <div class="info-item">
-                <div class="info-label">Updated on</div>
-                <div class="info-value">August 20, 2026</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">Released on</div>
-                <div class="info-value">September 15, 2011</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">Category</div>
-                <div class="info-value">Social</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">Developer</div>
-                <div class="info-value">Snap Inc.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sticky Mobile Install Bar -->
-    <div class="mobile-install-bar">
-        <div class="app-icon-small">
-            <!-- App icon will be set by JS -->
-        </div>
-        <div class="app-info-small">
-            <div class="app-name-small">App Name</div>
-            <div class="developer-small">Developer</div>
-        </div>
-        <button class="install-button-small ripple">
-            INSTALL
-            <div class="ripple"></div>
-        </button>
+    <div class="topbar__right">
+      <button class="topbar__icon-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z" fill="currentColor"/></svg>
+        <svg class="icon-moon" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" fill="currentColor"/></svg>
+      </button>
     </div>
-
-    <script src="../js/utils.js" type="module"></script>
-    <script src="../js/app.js" type="module"></script>
+  </header>
+  <div id="appRoot"></div>
+  <div class="mobile-bar" id="mobileBar" style="display:none">
+    <div class="mobile-bar__icon" id="mobileIcon"></div>
+    <div class="mobile-bar__info">
+      <div class="mobile-bar__name" id="mobileName"></div>
+      <div class="mobile-bar__dev" id="mobileDev"></div>
+    </div>
+    <button class="mobile-bar__btn" id="mobileInstall">INSTALL</button>
+  </div>
+  <script type="module" src="../js/app-detail.js"></script>
 </body>
 </html>

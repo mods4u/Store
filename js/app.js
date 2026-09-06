@@ -1,288 +1,299 @@
-// App page functionality
-import { getBaseUrl, loadAppsData, getAppFromUrl } from './utils.js';
+// ── ModPlay Store — Main Application ──
 
-let currentApp = null;
-let appsData = [];
-
-// DOM elements
-const installButton = document.querySelector('.install-button');
-const installButtonSmall = document.querySelector('.install-button-small');
-const appNameElement = document.querySelector('.app-name-large');
-const developerElement = document.querySelector('.developer-row');
-const verifiedBadge = document.querySelector('.verified-badge');
-const statsRating = document.querySelector('.stat-rating');
-const statsValue = document.querySelector('.stat-value');
-const statsLabel = document.querySelector('.stat-label');
-const screenshotCarousel = document.querySelector('.screenshot-carousel');
-const aboutText = document.querySelector('.about-text');
-const aboutToggle = document.querySelector('.about-toggle');
-const reviewsScoreValue = document.querySelector('.reviews-score-value');
-const reviewsScoreStars = document.querySelector('.reviews-score-stars');
-const reviewsCount = document.querySelector('.reviews-count');
-const ratingBreakdown = document.querySelector('.breakdown-fill');
-const reviewCardsContainer = document.querySelector('.review-card'); // Will be parent
-const additionalInfoItems = document.querySelectorAll('.info-value');
-const mobileInstallButton = document.querySelector('.install-button-small');
-
-// State for download button
-let isDownloading = false;
-let downloadTimeout = null;
-
-// Initialize app page
-async function initAppPage() {
-    try {
-        // Load apps data
-        appsData = await loadAppsData();
-        
-        // Get app from URL
-        currentApp = getAppFromUrl(appsData);
-        if (!currentApp) {
-            document.body.innerHTML = '<h1>App not found</h1><a href="javascript:history.back()">Go back</a>';
-            return;
-        }
-        
-        // Set document title
-        document.title = `${currentApp.name} - Google Play Store`;
-        
-        // Populate app data
-        populateAppData();
-        
-        // Set up event listeners
-        setupEventListeners();
-        
-        // Handle collapsed/expanded description
-        setupDescriptionToggle();
-        
-    } catch (error) {
-        console.error('Error initializing app page:', error);
-        document.body.innerHTML = '<h1>Error loading app</h1><a href="javascript:history.back()">Go back</a>';
-    }
+// ── Utility Functions ──
+export function getBaseUrl() {
+  const { hostname, pathname } = window.location;
+  if (hostname.includes('github.io')) {
+    const parts = pathname.split('/').filter(Boolean);
+    if (parts.length >= 1) return `/${parts[0]}/`;
+  }
+  return '/';
 }
 
-function populateAppData() {
-    if (!currentApp) return;
-    
-    // App header
-    appNameElement.textContent = currentApp.name;
-    developerElement.innerHTML = `
-        <span>${currentApp.developer}</span>
-        ${currentApp.verified ? '<svg class="verified-badge" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.2l-3.5-3.5-.7.7 4.2 4.2 8-8-.7-.7z" fill="var(--md-sys-color-primary)"/></svg>' : ''}
-    `;
-    
-    // Install button text
-    installButton.textContent = 'INSTALL';
-    installButtonSmall.textContent = 'INSTALL';
-    
-    // Stats row
-    statsRating.innerHTML = '';
-    for (let i = 0; i < 5; i++) {
-        const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        star.className = 'star';
-        star.setAttribute('viewBox', '0 0 24 24');
-        star.setAttribute('fill', 'none');
-        star.innerHTML = '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 18.36l-6.15-1.97L6.91 18.36l5-4.87L2 9.27l6.91-3.01L12 2z" fill="var(--md-sys-color-star)"/>';
-        if (i < Math.floor(currentApp.rating)) {
-            star.classList.add('full');
-        } else if (i === Math.floor(currentApp.rating) && currentApp.rating % 1 !== 0) {
-            star.classList.add('half');
-        }
-        statsRating.appendChild(star);
+export async function loadApps() {
+  const res = await fetch(`${getBaseUrl()}apps.json`);
+  if (!res.ok) throw new Error(`Failed to load apps: ${res.status}`);
+  return res.json();
+}
+
+export function getAppFromUrl(apps) {
+  const parts = window.location.pathname.split('/').filter(Boolean);
+  const key = parts[parts.length - 2] || parts[parts.length - 1];
+  return apps.find(a => a.key === key) || null;
+}
+
+// ── Theme Toggle ──
+function initTheme() {
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
+
+  document.getElementById('themeToggle')?.addEventListener('click', () => {
+    const current = document.documentElement.dataset.theme;
+    const next = current === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('theme', next);
+  });
+}
+
+// ── Search ──
+function initSearch(apps) {
+  const input = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('searchClear');
+  const content = document.getElementById('content');
+  const searchResults = document.getElementById('searchResults');
+
+  if (!input) return;
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    clearBtn.style.display = q ? 'flex' : 'none';
+
+    if (!q) {
+      content.style.display = '';
+      searchResults.style.display = 'none';
+      return;
     }
-    statsValue.textContent = currentApp.rating.toFixed(1);
-    statsLabel.textContent = currentApp.reviews;
-    
-    // Screenshot carousel
-    screenshotCarousel.innerHTML = '';
-    currentApp.screenshots.forEach((screenshot, index) => {
-        const screenshotCard = document.createElement('div');
-        screenshotCard.className = 'screenshot-card';
-        screenshotCard.innerHTML = `
-            <img src="${screenshot}" onerror="this.onerror=null;this.outerHTML='<div class=\"screenshot-card\"><svg width=\"200\" height=\"400\" viewBox=\"0 0 200 400\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"200\" height=\"400\" fill=\"var(--md-sys-color-outline-variant)\"/><text x=\"100\" y=\"200\" text-anchor=\"middle\" dy=\"0.3em\" fill=\"var(--md-sys-color-on-surface-variant)\" font-size=\"16\">Screenshot ${index + 1}</text></svg></div>'">
-        `;
-        screenshotCarousel.appendChild(screenshotCard);
+
+    const matches = apps.filter(a =>
+      a.name.toLowerCase().includes(q) ||
+      a.developer.toLowerCase().includes(q) ||
+      a.category.toLowerCase().includes(q) ||
+      (a.description && a.description.toLowerCase().includes(q))
+    );
+
+    content.style.display = 'none';
+    searchResults.style.display = '';
+
+    if (matches.length === 0) {
+      searchResults.innerHTML = `
+        <div class="no-results">
+          <div class="no-results__icon">🔍</div>
+          <div class="no-results__text">No results for "${input.value}"</div>
+        </div>`;
+    } else {
+      searchResults.innerHTML = `
+        <div class="section fade-in">
+          <h2 class="section__title">Search results (${matches.length})</h2>
+          <div class="carousel">${matches.map(renderAppCard).join('')}</div>
+        </div>`;
+      bindCardClicks(searchResults, apps);
+    }
+  });
+
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    clearBtn.style.display = 'none';
+    content.style.display = '';
+    searchResults.style.display = 'none';
+    input.focus();
+  });
+}
+
+// ── Tab Switching ──
+function initTabs(apps) {
+  const tabs = document.getElementById('navTabs');
+  if (!tabs) return;
+
+  tabs.addEventListener('click', e => {
+    const btn = e.target.closest('.tabs__item');
+    if (!btn) return;
+
+    tabs.querySelectorAll('.tabs__item').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+
+    const tab = btn.dataset.tab;
+    renderTab(tab, apps);
+  });
+}
+
+// ── Render Storefront ──
+function renderTab(tab, apps) {
+  const content = document.getElementById('content');
+  const skeleton = document.getElementById('skeleton');
+  skeleton.style.display = 'none';
+  content.style.display = '';
+  content.innerHTML = '';
+
+  switch (tab) {
+    case 'for-you':
+      renderForYou(apps, content);
+      break;
+    case 'top-charts':
+      renderTopCharts(apps, content);
+      break;
+    case 'categories':
+      renderCategories(apps, content);
+      break;
+    case 'security':
+      renderSecurity(apps, content);
+      break;
+    default:
+      renderForYou(apps, content);
+  }
+
+  bindCardClicks(content, apps);
+}
+
+function renderForYou(apps, container) {
+  // Featured carousel (editorChoice apps)
+  const featured = apps.filter(a => a.editorChoice);
+  if (featured.length) {
+    const section = el('div', 'section fade-in');
+    section.innerHTML = `
+      <h2 class="section__title">Editor's Choice</h2>
+      <div class="carousel">${featured.map(renderFeaturedCard).join('')}</div>`;
+    container.appendChild(section);
+  }
+
+  // Recommended
+  renderCarousel('Recommended for you', apps.slice(0, 6), container);
+
+  // Trending (by rating)
+  const trending = [...apps].sort((a, b) => b.rating - a.rating).slice(0, 6);
+  renderCarousel('Trending now', trending, container);
+
+  // Recently updated
+  const recent = [...apps].sort((a, b) => new Date(b.updated) - new Date(a.updated)).slice(0, 6);
+  renderCarousel('Recently updated', recent, container);
+}
+
+function renderTopCharts(apps, container) {
+  const byDownloads = [...apps].sort((a, b) => parseDownloads(b.downloads) - parseDownloads(a.downloads));
+  renderCarousel('Most downloaded', byDownloads, container);
+
+  const byRating = [...apps].sort((a, b) => b.rating - a.rating);
+  renderCarousel('Highest rated', byRating, container);
+}
+
+function renderCategories(apps, container) {
+  const cats = [...new Set(apps.map(a => a.category))];
+  cats.forEach(cat => {
+    const catApps = apps.filter(a => a.category === cat);
+    renderCarousel(cat, catApps, container);
+  });
+}
+
+function renderSecurity(apps, container) {
+  const intro = el('div', 'section fade-in');
+  intro.innerHTML = `
+    <div style="padding:var(--sp-5);background:var(--color-primary-container);border-radius:var(--r-xl);margin-bottom:var(--sp-5)">
+      <h2 style="font-size:var(--fs-xl);margin-bottom:var(--sp-3)">🔒 Security Awareness Training</h2>
+      <p style="color:var(--color-on-primary-container);max-width:600px">
+        This store is an <strong>educational project</strong> demonstrating how app stores work.
+        Each app listing contains security training elements — fake reviews, metadata,
+        and download flows — designed to teach awareness about app store safety.
+      </p>
+    </div>`;
+  container.appendChild(intro);
+
+  renderCarousel('All apps', apps, container);
+
+  // Security tips
+  const tips = el('div', 'section fade-in');
+  tips.innerHTML = `
+    <h2 class="section__title">🛡️ Security Tips</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--sp-4)">
+      ${[
+        { icon: '⚠️', title: 'Verify Developer', desc: 'Always check the developer name and verified badge before installing.' },
+        { icon: '⭐', title: 'Read Reviews', desc: 'Look for patterns in reviews — many similar positive reviews can be fake.' },
+        { icon: '📊', title: 'Check Permissions', desc: 'Review what permissions an app requests. Unnecessary permissions are a red flag.' },
+        { icon: '🔄', title: 'Keep Updated', desc: 'Outdated apps may contain known security vulnerabilities.' },
+      ].map(t => `
+        <div style="padding:var(--sp-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--r-lg)">
+          <div style="font-size:24px;margin-bottom:var(--sp-2)">${t.icon}</div>
+          <h4 style="margin-bottom:var(--sp-2)">${t.title}</h4>
+          <p style="font-size:var(--fs-sm);color:var(--color-on-surface-muted)">${t.desc}</p>
+        </div>`).join('')}
+    </div>`;
+  container.appendChild(tips);
+}
+
+// ── Card Renderers ──
+function renderFeaturedCard(app) {
+  return `
+    <div class="featured" data-key="${app.key}">
+      <img class="featured__img" src="${app.screenshots?.[0] || ''}" onerror="this.style.background='var(--color-primary-container)'" alt="${app.name}">
+      <div class="featured__overlay">
+        <span class="featured__badge">Editor's Choice</span>
+        <div class="featured__name">${app.name}</div>
+        <div class="featured__dev">${app.developer}</div>
+      </div>
+    </div>`;
+}
+
+function renderAppCard(app) {
+  return `
+    <div class="app-card" data-key="${app.key}">
+      <div class="app-card__icon">
+        <svg viewBox="0 0 56 56" fill="none"><rect width="56" height="56" rx="12" fill="${app.accentColor || '#01875f'}"/><text x="28" y="35" text-anchor="middle" fill="white" font-size="22" font-weight="bold" font-family="sans-serif">${app.name.charAt(0)}</text></svg>
+      </div>
+      <div class="app-card__info">
+        <div class="app-card__name">${app.name}</div>
+        <div class="app-card__dev">${app.developer}</div>
+        <div class="app-card__rating">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 18.36l-6.15-1.97L6.91 18.36l5-4.87L2 9.27l6.91-3.01L12 2z" fill="currentColor"/></svg>
+          ${app.rating}
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderCarousel(title, apps, container) {
+  const section = el('div', 'section fade-in');
+  section.innerHTML = `
+    <h2 class="section__title">${title}</h2>
+    <div class="carousel">${apps.map(renderAppCard).join('')}</div>`;
+  container.appendChild(section);
+}
+
+function bindCardClicks(root, apps) {
+  root.querySelectorAll('[data-key]').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const key = card.dataset.key;
+      window.location.href = `${getBaseUrl()}${key}/`;
     });
-    
-    // Description
-    aboutText.textContent = currentApp.description;
-    
-    // Reviews
-    reviewsScoreValue.textContent = currentApp.rating.toFixed(1);
-    reviewsScoreStars.innerHTML = '';
-    for (let i = 0; i < 5; i++) {
-        const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        star.className = 'star';
-        star.setAttribute('viewBox', '0 0 24 24');
-        star.setAttribute('fill', 'none');
-        star.innerHTML = '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 18.36l-6.15-1.97L6.91 18.36l5-4.87L2 9.27l6.91-3.01L12 2z" fill="var(--md-sys-color-star)"/>';
-        if (i < Math.floor(currentApp.rating)) {
-            star.classList.add('full');
-        } else if (i === Math.floor(currentApp.rating) && currentApp.rating % 1 !== 0) {
-            star.classList.add('half');
-        }
-        reviewsScoreStars.appendChild(star);
-    }
-    reviewsCount.textContent = currentApp.reviews;
-    
-    // Rating breakdown (simplified - in real app would calculate from fakeReviews)
-    const ratingCounts = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0};
-    currentApp.fakeReviews.forEach(review => {
-        ratingCounts[review.rating] = (ratingCounts[review.rating] || 0) + 1;
-    });
-    
-    const breakdownRows = ratingBreakdown.closest('.rating-breakdown').querySelectorAll('.breakdown-row');
-    breakdownRows.forEach((row, index) => {
-        const rating = 5 - index;
-        const count = ratingCounts[rating] || 0;
-        const percentage = (count / currentApp.fakeReviews.length) * 100;
-        row.querySelector('.breakdown-fill').style.width = `${percentage}%`;
-        row.querySelector('.breakdown-count').textContent = count;
-    });
-    
-    // Review cards
-    const reviewsContainer = document.querySelector('.reviews-section');
-    // Clear existing review cards (except template)
-    const existingCards = reviewsContainer.querySelectorAll('.review-card:not([data-template])');
-    existingCards.forEach(card => card.remove());
-    
-    // Add fake reviews
-    currentApp.fakeReviews.forEach(review => {
-        const reviewCard = document.createElement('div');
-        reviewCard.className = 'review-card';
-        reviewCard.innerHTML = `
-            <div class="review-avatar">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="${getAvatarColor(review.author)}" stroke-width="1.5"/>
-                    <text x="12" y="16" text-anchor="middle" fill="${getAvatarColor(review.author)}" font-size="10" font-weight="bold">${getInitials(review.author)}</text>
-                </svg>
-            </div>
-            <div class="review-content">
-                <div class="review-header">
-                    <span class="review-author">${review.author}</span>
-                    <span class="review-date">Just now</span>
-                </div>
-                <div class="review-stars">
-                    ${Array(5).fill(0).map((_, i) => i < review.rating ? '<svg class="star" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 18.36l-6.15-1.97L6.91 18.36l5-4.87L2 9.27l6.91-3.01L12 2z" fill="var(--md-sys-color-star)"/></svg>' : '<svg class="star" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 18.36l-6.15-1.97L6.91 18.36l5-4.87L2 9.27l6.91-3.01L12 2z" fill="none" stroke="var(--md-sys-color-outline)" stroke-width="1.5"/></svg>').join('')}
-                </div>
-                <p class="review-text">${review.text}</p>
-                <div class="review-helpful">${review.helpful.toLocaleString()} found this helpful</div>
-            </div>
-        `;
-        reviewsContainer.appendChild(reviewCard);
-    });
-    
-    // Additional info
-    const infoValues = document.querySelectorAll('.info-value');
-    if (infoValues.length >= 4) {
-        infoValues[0].textContent = currentApp.updated;
-        infoValues[1].textContent = currentApp.released;
-        infoValues[2].textContent = currentApp.category;
-        infoValues[3].textContent = currentApp.developer;
-    }
-    
-    // Set up install button
-    setupInstallButton();
+  });
 }
 
-function getAvatarColor(name) {
-    // Simple hash function to generate consistent colors
-    let hash = 0;
-    for (let i = 0; i < name.length; i++) {
-        hash = name.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const colors = ['#01875f', '#FF6D00', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1', '#955251', '#B565A7'];
-    return colors[Math.abs(hash) % colors.length];
+// ── Helpers ──
+function el(tag, className) {
+  const e = document.createElement(tag);
+  if (className) e.className = className;
+  return e;
 }
 
-function getInitials(name) {
-    return name.split(' ').map(part => part[0]).join('').toUpperCase().substring(0, 2);
+function parseDownloads(str) {
+  if (!str) return 0;
+  const num = parseFloat(str);
+  if (str.includes('B')) return num * 1000;
+  if (str.includes('M')) return num;
+  return num;
 }
 
-function setupEventListeners() {
-    // Back button (handled by history.back() in template)
-    const backButton = document.querySelector('.app-back-button');
-    if (backButton) {
-        backButton.addEventListener('click', () => history.back());
-    }
-    
-    // Description toggle
-    if (aboutToggle) {
-        aboutToggle.addEventListener('click', toggleDescription);
-    }
-    
-    // Install buttons
-    if (installButton) {
-        installButton.addEventListener('click', handleInstallClick);
-    }
-    if (installButtonSmall) {
-        installButtonSmall.addEventListener('click', handleInstallClick);
-    }
-}
+// ── Initialize Storefront ──
+async function init() {
+  initTheme();
 
-function toggleDescription() {
-    aboutText.classList.toggle('collapsed');
-    aboutToggle.textContent = aboutText.classList.contains('collapsed') ? 'Show more' : 'Show less';
-}
+  try {
+    const apps = await loadApps();
+    initSearch(apps);
+    initTabs(apps);
 
-function setupInstallButton() {
-    isDownloading = false;
-    installButton.textContent = 'INSTALL';
-    installButtonSmall.textContent = 'INSTALL';
-    installButton.disabled = false;
-    installButtonSmall.disabled = false;
-    
-    // Reset any ongoing animations
-    installButton.classList.remove('active');
-    installButtonSmall.classList.remove('active');
-}
-
-function handleInstallClick() {
-    if (isDownloading) return;
-    
-    isDownloading = true;
-    
-    // Update both buttons
-    installButton.textContent = 'DOWNLOADING...';
-    installButtonSmall.textContent = 'DOWNLOADING...';
-    installButton.disabled = true;
-    installButtonSmall.disabled = true;
-    
-    // Add ripple effect
-    installButton.classList.add('active');
-    installButtonSmall.classList.add('active');
-    
-    // Simulate download delay
-    downloadTimeout = setTimeout(() => {
-        triggerDownload();
-    }, 1200);
-}
-
-function triggerDownload() {
-    // Change to downloading state
-    installButton.textContent = 'DOWNLOADING...';
-    installButtonSmall.textContent = 'DOWNLOADING...';
-    
-    // Create download link
-    const apkUrl = `${getBaseUrl()}apks/${currentApp.key}.apk`;
-    const downloadLink = document.createElement('a');
-    downloadLink.href = apkUrl;
-    downloadLink.download = `${currentApp.name}.apk`;
-    
-    // Trigger download
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-    
-    // Set timeout for downloaded state
+    // Show content after brief delay
     setTimeout(() => {
-        installButton.textContent = 'DOWNLOADED';
-        installButtonSmall.textContent = 'DOWNLOADED';
-        
-        // Reset after 2.5s
-        setTimeout(() => {
-            setupInstallButton();
-        }, 2500);
-    }, 800);
+      document.getElementById('skeleton').style.display = 'none';
+      renderTab('for-you', apps);
+    }, 600);
+  } catch (err) {
+    console.error('Failed to load:', err);
+    document.getElementById('skeleton').innerHTML = `
+      <div class="no-results">
+        <div class="no-results__icon">❌</div>
+        <div class="no-results__text">Failed to load apps</div>
+      </div>`;
+  }
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initAppPage);
+init();

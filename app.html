@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Snapchat — ModPlay</title>
+  <title>App — ModPlay</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
   <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/base.css">
@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../css/app-page.css">
 </head>
 <body>
+  <!-- Top Bar -->
   <header class="topbar">
     <div class="topbar__left">
       <a href="/" class="topbar__brand">
@@ -28,7 +29,11 @@
       </button>
     </div>
   </header>
+
+  <!-- Content injected by JS -->
   <div id="appRoot"></div>
+
+  <!-- Mobile Install Bar -->
   <div class="mobile-bar" id="mobileBar" style="display:none">
     <div class="mobile-bar__icon" id="mobileIcon"></div>
     <div class="mobile-bar__info">
@@ -37,6 +42,7 @@
     </div>
     <button class="mobile-bar__btn" id="mobileInstall">INSTALL</button>
   </div>
+
   <script type="module" src="../js/app-detail.js"></script>
 </body>
 </html>
