@@ -891,6 +891,76 @@
         .header-row .search-container { display: none; }
         .tabs-container { display: none; }
 
+
+        /* ==================== MOBILE RESPONSIVE ==================== */
+        .hscroll-row { -webkit-overflow-scrolling: touch; scroll-padding-left: 16px; padding-left: 0; padding-right: 16px; }
+        .hscroll-row::-webkit-scrollbar { display: none; }
+        .category-chips { display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 0 16px; }
+        .category-chips::-webkit-scrollbar { display: none; }
+        .chip { flex-shrink: 0; padding: 8px 16px; border-radius: var(--md-radius-xl); font-size: 13px; font-weight: 500; border: 1px solid var(--md-outline-variant); color: var(--md-on-surface-variant); background: var(--md-surface); cursor: pointer; transition: all var(--md-transition); white-space: nowrap; }
+        .chip:hover { background: var(--md-surface-container-high); }
+        .chip.active { background: var(--md-primary); color: var(--md-on-primary); border-color: var(--md-primary); }
+
+        @media (max-width: 768px) {
+            .header-row { padding: 6px 12px; gap: 8px; }
+            .header-logo svg { width: 28px; height: 28px; }
+            .header-logo-text { font-size: 18px; }
+            .search-bar { height: 42px; padding: 0 12px; }
+            .search-bar input { font-size: 14px; }
+            .header-right { gap: 2px; }
+            .header-avatar { width: 28px; height: 28px; font-size: 12px; margin-left: 4px; }
+            main { padding: 0 12px 80px; }
+            .detail-hero { grid-template-columns: 1fr; text-align: center; gap: 16px; }
+            .detail-icon { width: 140px; height: 140px; margin: 0 auto; }
+            .detail-icon svg { width: 60px; height: 60px; }
+            .detail-app-name { font-size: 22px; }
+            .detail-info { text-align: center; }
+            .detail-stats { justify-content: center; }
+            .detail-tags { justify-content: center; }
+            .detail-actions { justify-content: center; }
+            .detail-grid { grid-template-columns: 1fr; gap: 16px; }
+            .screenshots-row { gap: 10px; }
+            .screenshot { min-width: 160px; }
+        }
+
+        @media (max-width: 480px) {
+            .header-row { padding: 6px 10px; gap: 6px; }
+            .header-logo svg { width: 24px; height: 24px; }
+            .header-logo-text { font-size: 16px; }
+            .search-container { max-width: none; }
+            .search-bar { height: 40px; border-radius: 20px; }
+            .search-bar input { font-size: 14px; }
+            .header-right .header-icon-btn:not(:last-child) { display: none; }
+            .header-avatar { width: 26px; height: 26px; font-size: 11px; }
+            main { padding: 0 10px 80px; }
+            .detail-hero { grid-template-columns: 1fr; text-align: center; gap: 12px; padding-top: 8px; }
+            .detail-icon { width: 120px; height: 120px; margin: 0 auto; border-radius: 20px; }
+            .detail-icon svg { width: 50px; height: 50px; }
+            .detail-app-name { font-size: 20px; }
+            .detail-dev { font-size: 13px; }
+            .detail-info { text-align: center; }
+            .detail-stats { justify-content: center; font-size: 12px; }
+            .detail-tags { justify-content: center; gap: 6px; }
+            .detail-tag { font-size: 11px; padding: 5px 10px; }
+            .detail-actions { justify-content: center; }
+            .detail-actions .install-btn { width: 100%; justify-content: center; }
+            .detail-grid { grid-template-columns: 1fr; gap: 12px; }
+            .detail-section { margin-bottom: 16px; }
+            .detail-section-title { font-size: 15px; }
+            .screenshots-row { gap: 8px; }
+            .screenshot { min-width: 140px; }
+            .info-table td:first-child, .info-table td:last-child { font-size: 12px; }
+            .security-card { padding: 12px; }
+            .security-text { font-size: 12px; }
+            .bottom-nav .nav-item { font-size: 10px; gap: 2px; }
+            .bottom-nav .nav-item svg { width: 20px; height: 20px; }
+        }
+
+        @media (max-width: 360px) {
+            .detail-icon { width: 100px; height: 100px; }
+            .detail-icon svg { width: 40px; height: 40px; }
+            .detail-app-name { font-size: 18px; }
+        }
     </style>
 </head>
 <body>
@@ -948,7 +1018,7 @@
 
     <div class="detail-hero">
         <div class="detail-icon" style="background:linear-gradient(135deg, #25D366, #128C7E)">
-            <svg viewBox="0 0 48 48" fill="none"><rect width="80" height="80" rx="10" fill="#25D366"/><path d="M24 10C16.268 10 10 16.268 10 24c0 2.856.748 5.536 2.056 7.856L10 38l6.4-2C18.656 37.248 21.248 38 24 38c7.732 0 14-6.268 14-14S31.732 10 24 10z" fill="white"/></svg>
+            <svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="12" fill="#25D366"/><path d="M24 10C16.268 10 10 16.268 10 24c0 2.856.748 5.536 2.056 7.856L10 38l6.4-2C18.656 37.248 21.248 38 24 38c7.732 0 14-6.268 14-14S31.732 10 24 10z" fill="white"/><path d="M19 17c.3-.8.6-.8 1-.8h.6c.3 0 .7.1 1.1.8.4.7 1.5 2.5 1.5 2.7.1.2.1.4 0 .6-.1.2-.2.3-.4.5l-.5.5c-.2.2-.3.3-.2.5.3.5 1.2 1.8 2.4 2.6 1.2.9 2 1 2.3.9.2-.1.3-.2.5-.4l.4-.4c.2-.2.3-.2.5-.1.2.1 1.4.7 1.6.8.2.1.4.2.5.3.1.2.1.9-.2 1.6-.3.7-1.4 1.4-2.2 1.4-.8 0-2.4-.4-4.5-2.1-2.1-1.7-3.4-3.8-3.6-4.1-.2-.3-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.3-.3.6-.4.8-.4h.6c.2 0 .5 0 .7.5.3.7 1 2.3 1 2.5 0 .2 0 .3-.1.5-.1.2-.2.3-.4.5l-.4.4c-.1.2 0 .3.1.5z" fill="#25D366"/></svg>
         </div>
         <div class="detail-info">
             <h1 class="detail-app-name">WhatsApp Pro</h1>

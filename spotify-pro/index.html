@@ -891,6 +891,76 @@
         .header-row .search-container { display: none; }
         .tabs-container { display: none; }
 
+
+        /* ==================== MOBILE RESPONSIVE ==================== */
+        .hscroll-row { -webkit-overflow-scrolling: touch; scroll-padding-left: 16px; padding-left: 0; padding-right: 16px; }
+        .hscroll-row::-webkit-scrollbar { display: none; }
+        .category-chips { display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 0 16px; }
+        .category-chips::-webkit-scrollbar { display: none; }
+        .chip { flex-shrink: 0; padding: 8px 16px; border-radius: var(--md-radius-xl); font-size: 13px; font-weight: 500; border: 1px solid var(--md-outline-variant); color: var(--md-on-surface-variant); background: var(--md-surface); cursor: pointer; transition: all var(--md-transition); white-space: nowrap; }
+        .chip:hover { background: var(--md-surface-container-high); }
+        .chip.active { background: var(--md-primary); color: var(--md-on-primary); border-color: var(--md-primary); }
+
+        @media (max-width: 768px) {
+            .header-row { padding: 6px 12px; gap: 8px; }
+            .header-logo svg { width: 28px; height: 28px; }
+            .header-logo-text { font-size: 18px; }
+            .search-bar { height: 42px; padding: 0 12px; }
+            .search-bar input { font-size: 14px; }
+            .header-right { gap: 2px; }
+            .header-avatar { width: 28px; height: 28px; font-size: 12px; margin-left: 4px; }
+            main { padding: 0 12px 80px; }
+            .detail-hero { grid-template-columns: 1fr; text-align: center; gap: 16px; }
+            .detail-icon { width: 140px; height: 140px; margin: 0 auto; }
+            .detail-icon svg { width: 60px; height: 60px; }
+            .detail-app-name { font-size: 22px; }
+            .detail-info { text-align: center; }
+            .detail-stats { justify-content: center; }
+            .detail-tags { justify-content: center; }
+            .detail-actions { justify-content: center; }
+            .detail-grid { grid-template-columns: 1fr; gap: 16px; }
+            .screenshots-row { gap: 10px; }
+            .screenshot { min-width: 160px; }
+        }
+
+        @media (max-width: 480px) {
+            .header-row { padding: 6px 10px; gap: 6px; }
+            .header-logo svg { width: 24px; height: 24px; }
+            .header-logo-text { font-size: 16px; }
+            .search-container { max-width: none; }
+            .search-bar { height: 40px; border-radius: 20px; }
+            .search-bar input { font-size: 14px; }
+            .header-right .header-icon-btn:not(:last-child) { display: none; }
+            .header-avatar { width: 26px; height: 26px; font-size: 11px; }
+            main { padding: 0 10px 80px; }
+            .detail-hero { grid-template-columns: 1fr; text-align: center; gap: 12px; padding-top: 8px; }
+            .detail-icon { width: 120px; height: 120px; margin: 0 auto; border-radius: 20px; }
+            .detail-icon svg { width: 50px; height: 50px; }
+            .detail-app-name { font-size: 20px; }
+            .detail-dev { font-size: 13px; }
+            .detail-info { text-align: center; }
+            .detail-stats { justify-content: center; font-size: 12px; }
+            .detail-tags { justify-content: center; gap: 6px; }
+            .detail-tag { font-size: 11px; padding: 5px 10px; }
+            .detail-actions { justify-content: center; }
+            .detail-actions .install-btn { width: 100%; justify-content: center; }
+            .detail-grid { grid-template-columns: 1fr; gap: 12px; }
+            .detail-section { margin-bottom: 16px; }
+            .detail-section-title { font-size: 15px; }
+            .screenshots-row { gap: 8px; }
+            .screenshot { min-width: 140px; }
+            .info-table td:first-child, .info-table td:last-child { font-size: 12px; }
+            .security-card { padding: 12px; }
+            .security-text { font-size: 12px; }
+            .bottom-nav .nav-item { font-size: 10px; gap: 2px; }
+            .bottom-nav .nav-item svg { width: 20px; height: 20px; }
+        }
+
+        @media (max-width: 360px) {
+            .detail-icon { width: 100px; height: 100px; }
+            .detail-icon svg { width: 40px; height: 40px; }
+            .detail-app-name { font-size: 18px; }
+        }
     </style>
 </head>
 <body>
@@ -948,7 +1018,7 @@
 
     <div class="detail-hero">
         <div class="detail-icon" style="background:linear-gradient(135deg, #1DB954, #169C46)">
-            <svg viewBox="0 0 48 48" fill="none"><rect width="80" height="80" rx="10" fill="#1DB954"/><circle cx="24" cy="26" r="12" stroke="white" stroke-width="2.5" fill="none"/><path d="M18 23c3-1 8-1.5 12 0" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M20 27c2-.7 5-1 8 0" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="12" fill="#1DB954"/><path d="M16 20c5-1.5 11-1.5 16 1" stroke="white" stroke-width="2.5" stroke-linecap="round"/><path d="M17.5 24.5c4-1.2 9-1.2 13 .8" stroke="white" stroke-width="2.2" stroke-linecap="round"/><path d="M19 29c3.5-1 7.5-1 10.5.6" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
         </div>
         <div class="detail-info">
             <h1 class="detail-app-name">Spotify Pro</h1>
